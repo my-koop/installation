@@ -1,8 +1,13 @@
 var program = require('commander');
-program.parse(process.argv);
+program.option("-n, --noprompt", "Automatically install all repo from the organization without prompt").parse(process.argv);
 
 var _ = require("lodash");
 var GitHub = require("github");
+var path = require("path");
+var git = require("nodegit");
+var Repo = require("nodegit").Repo;
+
+var cwd = process.cwd();
 
 var github = new GitHub({
     // required
@@ -26,5 +31,14 @@ github.repos.getFromOrg({
     var repoNames = repos.map(function (repo) {
         return repo.name;
     });
+
+    if (program.noprompt) {
+        _.forEach(repos, function (repo) {
+            Repo.clone(repo.git_url, path.resolve(cwd, repo.name), null, function (err, repo) {
+                if (err)
+                    return console.error(err);
+            });
+        });
+    }
 });
 module.exports = module;

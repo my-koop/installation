@@ -2,11 +2,17 @@
 export = module;
 var program = require('commander');
 program
+  .option("-n, --noprompt", "Automatically install all repo from the organization without prompt")
   .parse(process.argv);
 
 import async = require("async");
 import _ = require("lodash");
 import GitHub = require("github");
+var path = require("path");
+var git = require("nodegit");
+var Repo = require("nodegit").Repo;
+
+var cwd = process.cwd();
 
 var github = new GitHub({
     // required
@@ -14,7 +20,6 @@ var github = new GitHub({
     // optional
     timeout: 5000
 });
-
 
 github.repos.getFromOrg({
   org: "my-koop"
@@ -30,6 +35,14 @@ github.repos.getFromOrg({
   });
   var repoNames = repos.map(function (repo) { return repo.name; });
 
+  if(program.noprompt) {
+    _.forEach(repos, function(repo) {
+      Repo.clone(repo.git_url, path.resolve(cwd, repo.name),null, function(err, repo){
+        if(err) return console.error(err);
+      });
+    });
+
+  }
 });
 
 
