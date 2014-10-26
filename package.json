@@ -23,7 +23,7 @@
   "dependencies": {
     "async": "^0.9.0",
     "commander": "^2.5.0",
-    "github": "^0.2.2",
+    "github": "git://github.com/whentomanage/node-github",
     "json5": "^0.2.0",
     "lodash": "^2.4.1",
     "nodegit": "^0.1.4",
