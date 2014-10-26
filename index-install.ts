@@ -6,14 +6,15 @@ program
 
 import async = require("async");
 import _ = require("lodash");
-import GitHubApi = require("github");
+import GitHub = require("github");
 
-var github = new GitHubApi({
+var github = new GitHub({
     // required
     version: "3.0.0",
     // optional
     timeout: 5000
 });
+
 
 github.repos.getFromOrg({
   org: "my-koop"
@@ -22,7 +23,8 @@ github.repos.getFromOrg({
     console.error(err);
     return;
   }
-  repos = _.filter(repos, function(repo: any) {
+
+  repos = _.filter(repos, function(repo: GitHubResult.Org.Repo) {
     // filter out this project
     return repo.name !== "installation";
   });

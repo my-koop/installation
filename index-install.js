@@ -2,9 +2,9 @@ var program = require('commander');
 program.parse(process.argv);
 
 var _ = require("lodash");
-var GitHubApi = require("github");
+var GitHub = require("github");
 
-var github = new GitHubApi({
+var github = new GitHub({
     // required
     version: "3.0.0",
     // optional
@@ -18,6 +18,7 @@ github.repos.getFromOrg({
         console.error(err);
         return;
     }
+
     repos = _.filter(repos, function (repo) {
         // filter out this project
         return repo.name !== "installation";
