@@ -6,7 +6,6 @@ var path = require("path");
 
 process.title = 'mk';
 // Change working directory and entry point argument
-process.chdir("../");
 process.argv[1] = path.resolve(process.argv[1],"../../index.js");
 
 require("../index");
