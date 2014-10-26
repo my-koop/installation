@@ -3,7 +3,7 @@ program.option("-n, --noprompt", "Automatically install all repo from the organi
 
 var async = require("async");
 var _ = require("lodash");
-var GitHub = require("./lib/github");
+var github = require("./lib/github");
 var path = require("path");
 var git = require("nodegit");
 var Repo = require("nodegit").Repo;
@@ -11,8 +11,6 @@ var tsd = require("tsd");
 var prompt = require("prompt");
 
 var cwd = process.cwd();
-
-var github = new GitHub();
 
 // Execute install
 async.waterfall([

@@ -7,7 +7,7 @@ program
 
 import async = require("async");
 import _ = require("lodash");
-import GitHub = require("./lib/github");
+import github = require("./lib/github");
 var path = require("path");
 var git = require("nodegit");
 var Repo = require("nodegit").Repo;
@@ -15,8 +15,6 @@ var tsd = require("tsd");
 var prompt = require("prompt");
 
 var cwd = process.cwd();
-
-var github = new GitHub();
 
 // Execute install
 async.waterfall([
