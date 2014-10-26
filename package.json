@@ -1,0 +1,25 @@
+{
+  "name": "mykoop-installation",
+  "version": "0.0.1",
+  "description": "Utility to help you install MyKoop on your system for dev",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/my-koop/installation.git"
+  },
+  "keywords": [
+    "mykoop",
+    "install"
+  ],
+  "author": "Michael Ferris <mike.ferris@hotmail.com>",
+  "license": "GNU GPL v2",
+  "bugs": {
+    "url": "https://github.com/my-koop/installation/issues"
+  },
+  "homepage": "https://github.com/my-koop/installation",
+  "dependencies": {
+  }
+}
