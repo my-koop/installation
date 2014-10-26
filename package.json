@@ -10,8 +10,8 @@
     "type": "git",
     "url": "https://github.com/my-koop/installation.git"
   },
-  "bin" : {
-    "mk" : "build/index"
+  "bin": {
+    "mk": "build/index"
   },
   "keywords": [
     "mykoop",
@@ -31,6 +31,7 @@
     "lodash": "^2.4.1",
     "nodegit": "^0.1.4",
     "pkginfo": "^0.3.0",
+    "prompt": "^0.2.14",
     "tsd": "^0.6.0-beta.3"
   }
 }
