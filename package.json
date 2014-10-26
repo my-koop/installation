@@ -21,8 +21,12 @@
   },
   "homepage": "https://github.com/my-koop/installation",
   "dependencies": {
+    "async": "^0.9.0",
     "commander": "^2.5.0",
+    "github": "^0.2.2",
     "json5": "^0.2.0",
+    "lodash": "^2.4.1",
+    "nodegit": "^0.1.4",
     "pkginfo": "^0.3.0"
   }
 }

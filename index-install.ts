@@ -1,17 +1,34 @@
 /// <reference path="typings/tsd.d.ts" />
 export = module;
 var program = require('commander');
-var path = require("path");
-require("json5/lib/require");
-
 program
-  .option(
-    '-c, --config [file]',
-    'Choose config file with module list for installation [modules.json5]',
-     __dirname + '/modules.json5'
-   )
   .parse(process.argv);
 
-var configPath = path.resolve(program.config);
-var modules = require(configPath);
-console.log(modules);
+import async = require("async");
+import _ = require("lodash");
+import GitHubApi = require("github");
+
+var github = new GitHubApi({
+    // required
+    version: "3.0.0",
+    // optional
+    timeout: 5000
+});
+
+github.repos.getFromOrg({
+  org: "my-koop"
+}, function(err, repos) {
+  if(err) {
+    console.error(err);
+    return;
+  }
+  repos = _.filter(repos, function(repo: any) {
+    // filter out this project
+    return repo.name !== "installation";
+  });
+  var repoNames = repos.map(function (repo) { return repo.name; });
+
+});
+
+
+
