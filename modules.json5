@@ -1,0 +1,10 @@
+{
+  "mykoop"          : "my-koop/service.website",
+  //"mykoop-core"     : "my-koop/core.inventory",
+  //"mykoop-utils"    : "my-koop/utils.inventory",
+  //"mykoop-logger"   : "my-koop/module.logger",
+  //"mykoop-base"     : "my-koop/module.base",
+  //"mykoop-database" : "my-koop/module.database",
+  //"mykoop-inventory": "my-koop/module.inventory",
+  //"mykoop-user"     : "my-koop/module.user"
+}
