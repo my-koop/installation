@@ -1,12 +1,13 @@
 // Type definitions for Node-github.js v0.1.8
-// Project: https://github.com/ajaxorg/node-github
-// Definitions by: Michael Ferris <https://github.com/Cellule>
-// Definitions: https://github.com/borisyankov/DefinitelyTyped
+// Project: https:github.com/ajaxorg/node-github
+// Definitions by: Michael Ferris <https:github.com/Cellule>
+// Definitions: https:github.com/borisyankov/DefinitelyTyped
 // GitHub api v3
 
 declare module GitHubResult {
   export interface PlaceHolder{
     [id: string] : any;
+
   }
 
   export module Org {
@@ -71,44 +72,21 @@ declare module GitHubResult {
 declare module GitHubApi {
 
   export interface repos {
-    getFromOrg(
-      msg: {
-        org: string;
-        type ?: string; //^(all|public|member)$
-        page ?: number;
-        per_page ?: number;
-      },
-      callback: (err: any, result: GitHubResult.Org.Repo[]) => void
-    );
-    getAll(
-      msg: {
-        type ?: string; //^(all|owner|public|private|member)$
-        sort ?: string; //^(created|updated|pushed|full_name)$
-        direction ?: string; //^(asc|desc)$
-        page ?: number;
-        per_page ?: number;
-      },
-      callback: (err: any, result: GitHubResult.PlaceHolder) => void
-    );
-
-    getFromUser(
+    addCollaborator(
       msg: {
         user: Object;
-        type ?: string; //^(all|owner|member)$
-        sort ?: string; //^(created|updated|pushed|full_name)$
-        direction: Object;
-        page: Object;
-        per_page: Object;
+        repo: Object;
+        collabuser: Object;
       },
       callback: (err: any, result: GitHubResult.PlaceHolder) => void
     );
 
-    getFromOrg(
+    compareCommits(
       msg: {
-        org: Object;
-        type ?: string; //^(all|public|member)$
-        page: Object;
-        per_page: Object;
+        user: Object;
+        repo: Object;
+        base: Object;
+        head: Object;
       },
       callback: (err: any, result: GitHubResult.PlaceHolder) => void
     );
@@ -128,6 +106,46 @@ declare module GitHubApi {
       callback: (err: any, result: GitHubResult.PlaceHolder) => void
     );
 
+    createCommitComment(
+      msg: {
+        user: Object;
+        repo: Object;
+        sha: Object;
+        body: Object;
+        commit_id: Object;
+        path ?: string;
+        position ?: Number;
+        line ?: Number;
+       },
+       callback: (err: any, result: GitHubResult.PlaceHolder) => void
+     );
+
+    createContent(
+      msg: {
+        user: Object;
+        repo: Object;
+        content:Object;
+        message:Object;
+        path ?: string;
+        ref ?: string;
+       },
+       callback: (err: any, result: GitHubResult.PlaceHolder) => void
+     );
+
+    createFile(
+      msg: {
+        user: Object;
+        repo: Object;
+        path: string;
+        message: string;
+        content: string;
+        branch ?: string;
+        author ?: {[id: string]: string};
+        committer ?: {[id: string]: string};
+       },
+       callback: (err: any, result: GitHubResult.PlaceHolder) => void
+     );
+
     createFromOrg(
       msg: {
         org: Object;
@@ -145,31 +163,29 @@ declare module GitHubApi {
       callback: (err: any, result: GitHubResult.PlaceHolder) => void
     );
 
-    ge(
-      msg: {
-        user: Object;
-        repo: Object;
-      },
-      callback: (err: any, result: GitHubResult.PlaceHolder) => void
-    );
-
-    updat(
+    createHook(
       msg: {
         user: Object;
         repo: Object;
         name: Object;
-        description: Object;
-        homepage: Object;
-        private: Object;
-        has_issues: Object;
-        has_wiki: Object;
-        has_downloads: Object;
-        default_branch: Object;
+        config: {[id: string]: string};
+        events ?: string[];
+        active ?: Boolean;
+       },
+       callback: (err: any, result: GitHubResult.PlaceHolder) => void
+     );
+
+    createKey(
+      msg: {
+        user: Object;
+        repo: Object;
+        title: Object;
+        key: Object;
       },
       callback: (err: any, result: GitHubResult.PlaceHolder) => void
     );
 
-    delet(
+    delete(
       msg: {
         user: Object;
         repo: Object;
@@ -177,64 +193,100 @@ declare module GitHubApi {
       callback: (err: any, result: GitHubResult.PlaceHolder) => void
     );
 
-    merg(
+    deleteCommitComment(
       msg: {
         user: Object;
         repo: Object;
-        base: Object;
-        head: Object;
-        commit_message ?: string; //
+        id: Object;
       },
       callback: (err: any, result: GitHubResult.PlaceHolder) => void
     );
 
-    getContributors(
+    deleteDownload(
       msg: {
         user: Object;
         repo: Object;
-        anon ?: Boolean; //
+        id: Object;
+      },
+      callback: (err: any, result: GitHubResult.PlaceHolder) => void
+    );
+
+    deleteFile(
+      msg: {
+        user: Object;
+        repo: Object;
+        path: string;
+        message: string;
+        sha: string;
+        branch ?: string;
+        author ?: {[id: string]: string};
+        committer ?: {[id: string]: string};
+       },
+       callback: (err: any, result: GitHubResult.PlaceHolder) => void
+     );
+
+    deleteHook(
+      msg: {
+        user: Object;
+        repo: Object;
+        id: Object;
+      },
+      callback: (err: any, result: GitHubResult.PlaceHolder) => void
+    );
+
+    deleteKey(
+      msg: {
+        user: Object;
+        repo: Object;
+        id: Object;
+      },
+      callback: (err: any, result: GitHubResult.PlaceHolder) => void
+    );
+
+    fork(
+      msg: {
+        user: Object;
+        repo: Object;
+        organization ?: string;
+       },
+       callback: (err: any, result: GitHubResult.PlaceHolder) => void
+     );
+
+    get(
+      msg: {
+        user: Object;
+        repo: Object;
+      },
+      callback: (err: any, result: GitHubResult.PlaceHolder) => void
+    );
+
+    getAll(
+      msg: {
+        type ?: string; //^(all|owner|public|private|member)$
+        sort ?: string; //^(created|updated|pushed|full_name)$
+        direction ?: string; //^(asc|desc)$
+        page ?: number;
+        per_page ?: number;
+      },
+      callback: (err: any, result: GitHubResult.PlaceHolder) => void
+    );
+
+    getAllCommitComments(
+      msg: {
+        user: Object;
+        repo: Object;
         page: Object;
         per_page: Object;
       },
       callback: (err: any, result: GitHubResult.PlaceHolder) => void
     );
 
-    getLanguages(
+    getArchiveLink(
       msg: {
         user: Object;
         repo: Object;
-        page: Object;
-        per_page: Object;
-      },
-      callback: (err: any, result: GitHubResult.PlaceHolder) => void
-    );
-
-    getTeams(
-      msg: {
-        user: Object;
-        repo: Object;
-        page: Object;
-        per_page: Object;
-      },
-      callback: (err: any, result: GitHubResult.PlaceHolder) => void
-    );
-
-    getTags(
-      msg: {
-        user: Object;
-        repo: Object;
-        page: Object;
-        per_page: Object;
-      },
-      callback: (err: any, result: GitHubResult.PlaceHolder) => void
-    );
-
-    getBranches(
-      msg: {
-        user: Object;
-        repo: Object;
-        page: Object;
-        per_page: Object;
+        ref ?: string;
+        archive_format: string; //^(tarball|zipball)$
       },
       callback: (err: any, result: GitHubResult.PlaceHolder) => void
     );
@@ -250,7 +302,7 @@ declare module GitHubApi {
       callback: (err: any, result: GitHubResult.PlaceHolder) => void
     );
 
-    getCollaborators(
+    getBranches(
       msg: {
         user: Object;
         repo: Object;
@@ -269,35 +321,12 @@ declare module GitHubApi {
       callback: (err: any, result: GitHubResult.PlaceHolder) => void
     );
 
-    addCollaborator(
+    getCollaborators(
       msg: {
         user: Object;
         repo: Object;
-        collabuser: Object;
-      },
-      callback: (err: any, result: GitHubResult.PlaceHolder) => void
-    );
-
-    removeCollaborator(
-      msg: {
-        user: Object;
-        repo: Object;
-        collabuser: Object;
-      },
-      callback: (err: any, result: GitHubResult.PlaceHolder) => void
-    );
-
-    getCommits(
-      msg: {
-        user: Object;
-        repo: Object;
-        sha ?: string; //
-        path ?: string; //
-        author ?: string; //
         page: Object;
         per_page: Object;
-        since: Object;
-        until: Object;
       },
       callback: (err: any, result: GitHubResult.PlaceHolder) => void
     );
@@ -311,12 +340,11 @@ declare module GitHubApi {
       callback: (err: any, result: GitHubResult.PlaceHolder) => void
     );
 
-    getAllCommitComments(
+    getCommitComment(
       msg: {
         user: Object;
         repo: Object;
-        page: Object;
-        per_page: Object;
+        id: Object;
       },
       callback: (err: any, result: GitHubResult.PlaceHolder) => void
     );
@@ -332,63 +360,17 @@ declare module GitHubApi {
       callback: (err: any, result: GitHubResult.PlaceHolder) => void
     );
 
-    createCommitComment(
+    getCommits(
       msg: {
         user: Object;
         repo: Object;
-        sha: Object;
-        body: Object;
-        commit_id: Object;
-        path ?: string; //
-        position ?: Number; //
-        line ?: Number; //
-      },
-      callback: (err: any, result: GitHubResult.PlaceHolder) => void
-    );
-
-    getCommitComment(
-      msg: {
-        user: Object;
-        repo: Object;
-        id: Object;
-      },
-      callback: (err: any, result: GitHubResult.PlaceHolder) => void
-    );
-
-    updateCommitComment(
-      msg: {
-        user: Object;
-        repo: Object;
-        id: Object;
-        body: Object;
-      },
-      callback: (err: any, result: GitHubResult.PlaceHolder) => void
-    );
-
-    compareCommits(
-      msg: {
-        user: Object;
-        repo: Object;
-        base: Object;
-        head: Object;
-      },
-      callback: (err: any, result: GitHubResult.PlaceHolder) => void
-    );
-
-    deleteCommitComment(
-      msg: {
-        user: Object;
-        repo: Object;
-        id: Object;
-      },
-      callback: (err: any, result: GitHubResult.PlaceHolder) => void
-    );
-
-    getReadme(
-      msg: {
-        user: Object;
-        repo: Object;
-        ref ?: string; //
+        sha ?: string;
+        path ?: string;
+        author ?: string;
+        page: Object;
+        per_page: Object;
+        since: Object;
+        until: Object;
       },
       callback: (err: any, result: GitHubResult.PlaceHolder) => void
     );
@@ -397,80 +379,17 @@ declare module GitHubApi {
       msg: {
         user: Object;
         repo: Object;
-        path ?: string; //
-        ref ?: string; //
-      },
-      callback: (err: any, result: GitHubResult.PlaceHolder) => void
-    );
-    createContent(
-      msg: {
-        user: Object;
-        repo: Object;
-        content:Object
-        message:Object
-        path ?: string; //
-        ref ?: string; //
-      },
-      callback: (err: any, result: GitHubResult.PlaceHolder) => void
-    );
+        path ?: string;
+        ref ?: string;
+       },
+       callback: (err: any, result: GitHubResult.PlaceHolder) => void
+     );
 
-    createFile(
+    getContributors(
       msg: {
         user: Object;
         repo: Object;
-        path: string //;
-        message: string //;
-        content: string //;
-        branch ?: string; //
-        author ?: {[id: string]: string}; //
-        committer ?: {[id: string]: string}; //
-      },
-      callback: (err: any, result: GitHubResult.PlaceHolder) => void
-    );
-
-    updateFile(
-      msg: {
-        user: Object;
-        repo: Object;
-        path: string //;
-        message: string //;
-        content: string //;
-        sha: string //;
-        branch ?: string; //
-        author ?: {[id: string]: string}; //
-        committer ?: {[id: string]: string}; //
-      },
-      callback: (err: any, result: GitHubResult.PlaceHolder) => void
-    );
-
-    deleteFile(
-      msg: {
-        user: Object;
-        repo: Object;
-        path: string //;
-        message: string //;
-        sha: string //;
-        branch ?: string; //
-        author ?: {[id: string]: string}; //
-        committer ?: {[id: string]: string}; //
-      },
-      callback: (err: any, result: GitHubResult.PlaceHolder) => void
-    );
-
-    getArchiveLink(
-      msg: {
-        user: Object;
-        repo: Object;
-        ref ?: string; //
-        archive_format: string //^(tarball|zipball)$;
-      },
-      callback: (err: any, result: GitHubResult.PlaceHolder) => void
-    );
-
-    getDownloads(
-      msg: {
-        user: Object;
-        repo: Object;
+        anon ?: Boolean;
         page: Object;
         per_page: Object;
       },
@@ -486,11 +405,12 @@ declare module GitHubApi {
       callback: (err: any, result: GitHubResult.PlaceHolder) => void
     );
 
-    deleteDownload(
+    getDownloads(
       msg: {
         user: Object;
         repo: Object;
-        id: Object;
+        page: Object;
+        per_page: Object;
       },
       callback: (err: any, result: GitHubResult.PlaceHolder) => void
     );
@@ -506,16 +426,48 @@ declare module GitHubApi {
       callback: (err: any, result: GitHubResult.PlaceHolder) => void
     );
 
-    for(
+    getFromOrg(
       msg: {
-        user: Object;
-        repo: Object;
-        organization ?: string; //
+        org: Object;
+        type ?: string; //^(all|public|member)$
+        page: Object;
+        per_page: Object;
       },
       callback: (err: any, result: GitHubResult.PlaceHolder) => void
     );
 
-    getKeys(
+    getFromOrg(
+      msg: {
+        org: string;
+        type ?: string; //^(all|public|member)$
+        page ?: number;
+        per_page ?: number;
+      },
+      callback: (err: any, result: GitHubResult.Org.Repo[]) => void
+    );
+
+    getFromUser(
+      msg: {
+        user: Object;
+        type ?: string; //^(all|owner|member)$
+        sort ?: string; //^(created|updated|pushed|full_name)$
+        direction: Object;
+        page: Object;
+        per_page: Object;
+      },
+      callback: (err: any, result: GitHubResult.PlaceHolder) => void
+    );
+
+    getHook(
+      msg: {
+        user: Object;
+        repo: Object;
+        id: Object;
+      },
+      callback: (err: any, result: GitHubResult.PlaceHolder) => void
+    );
+
+    getHooks(
       msg: {
         user: Object;
         repo: Object;
@@ -534,35 +486,34 @@ declare module GitHubApi {
       callback: (err: any, result: GitHubResult.PlaceHolder) => void
     );
 
-    createKey(
+    getKeys(
       msg: {
         user: Object;
         repo: Object;
-        title: Object;
-        key: Object;
+        page: Object;
+        per_page: Object;
       },
       callback: (err: any, result: GitHubResult.PlaceHolder) => void
     );
 
-    updateKey(
+    getLanguages(
       msg: {
         user: Object;
         repo: Object;
-        id: Object;
-        title: Object;
-        key: Object;
+        page: Object;
+        per_page: Object;
       },
       callback: (err: any, result: GitHubResult.PlaceHolder) => void
     );
 
-    deleteKey(
+    getReadme(
       msg: {
         user: Object;
         repo: Object;
-        id: Object;
-      },
-      callback: (err: any, result: GitHubResult.PlaceHolder) => void
-    );
+        ref ?: string;
+       },
+       callback: (err: any, result: GitHubResult.PlaceHolder) => void
+     );
 
     getStargazers(
       msg: {
@@ -601,23 +552,17 @@ declare module GitHubApi {
       callback: (err: any, result: GitHubResult.PlaceHolder) => void
     );
 
-    sta(
+    getTags(
       msg: {
         user: Object;
         repo: Object;
+        page: Object;
+        per_page: Object;
       },
       callback: (err: any, result: GitHubResult.PlaceHolder) => void
     );
 
-    unStar(
-      msg: {
-        user: Object;
-        repo: Object;
-      },
-      callback: (err: any, result: GitHubResult.PlaceHolder) => void
-    );
-
-    getWatchers(
+    getTeams(
       msg: {
         user: Object;
         repo: Object;
@@ -644,6 +589,16 @@ declare module GitHubApi {
       callback: (err: any, result: GitHubResult.PlaceHolder) => void
     );
 
+    getWatchers(
+      msg: {
+        user: Object;
+        repo: Object;
+        page: Object;
+        per_page: Object;
+      },
+      callback: (err: any, result: GitHubResult.PlaceHolder) => void
+    );
+
     getWatching(
       msg: {
         user: Object;
@@ -654,7 +609,44 @@ declare module GitHubApi {
       callback: (err: any, result: GitHubResult.PlaceHolder) => void
     );
 
-    watc(
+    merge(
+      msg: {
+        user: Object;
+        repo: Object;
+        base: Object;
+        head: Object;
+        commit_message ?: string;
+       },
+       callback: (err: any, result: GitHubResult.PlaceHolder) => void
+     );
+
+    removeCollaborator(
+      msg: {
+        user: Object;
+        repo: Object;
+        collabuser: Object;
+      },
+      callback: (err: any, result: GitHubResult.PlaceHolder) => void
+    );
+
+    stat(
+      msg: {
+        user: Object;
+        repo: Object;
+      },
+      callback: (err: any, result: GitHubResult.PlaceHolder) => void
+    );
+
+    testHook(
+      msg: {
+        user: Object;
+        repo: Object;
+        id: Object;
+      },
+      callback: (err: any, result: GitHubResult.PlaceHolder) => void
+    );
+
+    unStar(
       msg: {
         user: Object;
         repo: Object;
@@ -670,36 +662,46 @@ declare module GitHubApi {
       callback: (err: any, result: GitHubResult.PlaceHolder) => void
     );
 
-    getHooks(
-      msg: {
-        user: Object;
-        repo: Object;
-        page: Object;
-        per_page: Object;
-      },
-      callback: (err: any, result: GitHubResult.PlaceHolder) => void
-    );
-
-    getHook(
-      msg: {
-        user: Object;
-        repo: Object;
-        id: Object;
-      },
-      callback: (err: any, result: GitHubResult.PlaceHolder) => void
-    );
-
-    createHook(
+    update(
       msg: {
         user: Object;
         repo: Object;
         name: Object;
-        config: {[id: string]: string}; //;
-        events ?: string[]; //
-        active ?: Boolean; //
+        description: Object;
+        homepage: Object;
+        private: Object;
+        has_issues: Object;
+        has_wiki: Object;
+        has_downloads: Object;
+        default_branch: Object;
       },
       callback: (err: any, result: GitHubResult.PlaceHolder) => void
     );
+
+    updateCommitComment(
+      msg: {
+        user: Object;
+        repo: Object;
+        id: Object;
+        body: Object;
+      },
+      callback: (err: any, result: GitHubResult.PlaceHolder) => void
+    );
+
+    updateFile(
+      msg: {
+        user: Object;
+        repo: Object;
+        path: string;
+        message: string;
+        content: string;
+        sha: string;
+        branch ?: string;
+        author ?: {[id: string]: string};
+        committer ?: {[id: string]: string};
+       },
+       callback: (err: any, result: GitHubResult.PlaceHolder) => void
+     );
 
     updateHook(
       msg: {
@@ -707,32 +709,34 @@ declare module GitHubApi {
         repo: Object;
         id: Object;
         name: Object;
-        config: {[id: string]: string}; //;
-        events ?: string[]; //
-        add_events ?: string[]; //
-        remove_events ?: string[]; //
-        active ?: Boolean; //
-      },
-      callback: (err: any, result: GitHubResult.PlaceHolder) => void
-    );
+        config: {[id: string]: string};
+        events ?: string[];
+        add_events ?: string[];
+        remove_events ?: string[];
+        active ?: Boolean;
+       },
+       callback: (err: any, result: GitHubResult.PlaceHolder) => void
+     );
 
-    testHook(
+    updateKey(
       msg: {
         user: Object;
         repo: Object;
         id: Object;
+        title: Object;
+        key: Object;
       },
       callback: (err: any, result: GitHubResult.PlaceHolder) => void
     );
 
-    deleteHook(
+    watch(
       msg: {
         user: Object;
         repo: Object;
-        id: Object;
       },
       callback: (err: any, result: GitHubResult.PlaceHolder) => void
     );
+
   }
 }
 
