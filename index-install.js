@@ -32,12 +32,21 @@ github.repos.getFromOrg({
     var repoNames = repos.map(function (repo) {
         return repo.name;
     });
+    var maxLength = _.max(repoNames, function (name) {
+        return name.length;
+    }).length;
 
     if (program.noprompt) {
         _.forEach(repos, function (repo) {
-            Repo.clone(repo.git_url, path.resolve(cwd, repo.name), null, function (err, repo) {
+            var repoPath = path.resolve(cwd, repo.name);
+            Repo.clone(repo.git_url, repoPath, null, function (err) {
                 if (err)
                     return console.error(err);
+                var padding = "";
+                for (var i = repo.name.length; i < maxLength; ++i) {
+                    padding += " ";
+                }
+                console.log("Repo: ", repo.name, padding, " Successfully cloned at :", repoPath);
             });
         });
     }
