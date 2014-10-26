@@ -69,17 +69,11 @@ declare module GitHubResult {
 }
 
 declare module GitHubApi {
-  export interface Header {
-    "If-Modified-Since" ?: boolean;
-    "If-None-Match" ?: boolean;
-    "Cookie" ?: boolean;
-    "User-Agent" ?: boolean;
-  }
   export interface authorization {
     getAll(
       msg:
       {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
         page ?: number; // Optional. Page number of the results to fetch. Validation rule: ` ^[0-9]+$ `.
         per_page ?: number; // Optional. A custom page size up to 100. Default is 30. Validation rule: ` ^[0-9]+$ `.
       },
@@ -88,7 +82,7 @@ declare module GitHubApi {
     get(
       msg:
       {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
         id: string; // Required.
       },
       callback: (err: any, result: any) => void
@@ -96,8 +90,8 @@ declare module GitHubApi {
     create(
       msg:
       {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
-        scopes ?: any[];//TODO::ARRAY // Optional. Optional array - A list of scopes that this authorization is in.
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        scopes ?: any[]; // TODO::ARRAY // Optional. Optional array - A list of scopes that this authorization is in.
         note ?: string; // Optional. Optional string - A note to remind you what the OAuth token is for.
         note_url ?: string; // Optional. Optional string - A URL to remind you what app the OAuth token is for.
       },
@@ -106,11 +100,11 @@ declare module GitHubApi {
     update(
       msg:
       {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
         id: string; // Required.
-        scopes ?: any[];//TODO::ARRAY // Optional. Optional array - A list of scopes that this authorization is in.
-        add_scopes ?: any[];//TODO::ARRAY // Optional. Optional array - A list of scopes to add to this authorization.
-        remove_scopes ?: any[];//TODO::ARRAY // Optional. Optional array - A list of scopes to remove from this authorization.
+        scopes ?: any[]; // TODO::ARRAY // Optional. Optional array - A list of scopes that this authorization is in.
+        add_scopes ?: any[]; // TODO::ARRAY // Optional. Optional array - A list of scopes to add to this authorization.
+        remove_scopes ?: any[]; // TODO::ARRAY // Optional. Optional array - A list of scopes to remove from this authorization.
         note ?: string; // Optional. Optional string - A note to remind you what the OAuth token is for.
         note_url ?: string; // Optional. Optional string - A URL to remind you what app the OAuth token is for.
       },
@@ -119,7 +113,7 @@ declare module GitHubApi {
     delete(
       msg:
       {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
         id: string; // Required.
       },
       callback: (err: any, result: any) => void
@@ -129,7 +123,7 @@ declare module GitHubApi {
     get(
       msg:
       {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
         page ?: number; // Optional. Page number of the results to fetch. Validation rule: ` ^[0-9]+$ `.
         per_page ?: number; // Optional. A custom page size up to 100. Default is 30. Validation rule: ` ^[0-9]+$ `.
       },
@@ -138,7 +132,7 @@ declare module GitHubApi {
     getFromRepo(
       msg:
       {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
         user: string; // Required.
         repo: string; // Required.
         page ?: number; // Optional. Page number of the results to fetch. Validation rule: ` ^[0-9]+$ `.
@@ -149,7 +143,7 @@ declare module GitHubApi {
     getFromRepoIssues(
       msg:
       {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
         user: string; // Required.
         repo: string; // Required.
         page ?: number; // Optional. Page number of the results to fetch. Validation rule: ` ^[0-9]+$ `.
@@ -160,7 +154,7 @@ declare module GitHubApi {
     getFromRepoNetwork(
       msg:
       {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
         user: string; // Required.
         repo: string; // Required.
         page ?: number; // Optional. Page number of the results to fetch. Validation rule: ` ^[0-9]+$ `.
@@ -171,7 +165,7 @@ declare module GitHubApi {
     getFromOrg(
       msg:
       {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
         org: string; // Required.
         page ?: number; // Optional. Page number of the results to fetch. Validation rule: ` ^[0-9]+$ `.
         per_page ?: number; // Optional. A custom page size up to 100. Default is 30. Validation rule: ` ^[0-9]+$ `.
@@ -181,7 +175,7 @@ declare module GitHubApi {
     getReceived(
       msg:
       {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
         user: string; // Required.
         page ?: number; // Optional. Page number of the results to fetch. Validation rule: ` ^[0-9]+$ `.
         per_page ?: number; // Optional. A custom page size up to 100. Default is 30. Validation rule: ` ^[0-9]+$ `.
@@ -191,7 +185,7 @@ declare module GitHubApi {
     getReceivedPublic(
       msg:
       {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
         user: string; // Required.
         page ?: number; // Optional. Page number of the results to fetch. Validation rule: ` ^[0-9]+$ `.
         per_page ?: number; // Optional. A custom page size up to 100. Default is 30. Validation rule: ` ^[0-9]+$ `.
@@ -201,7 +195,7 @@ declare module GitHubApi {
     getFromUser(
       msg:
       {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
         user: string; // Required.
         page ?: number; // Optional. Page number of the results to fetch. Validation rule: ` ^[0-9]+$ `.
         per_page ?: number; // Optional. A custom page size up to 100. Default is 30. Validation rule: ` ^[0-9]+$ `.
@@ -211,7 +205,7 @@ declare module GitHubApi {
     getFromUserPublic(
       msg:
       {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
         user: string; // Required.
         page ?: number; // Optional. Page number of the results to fetch. Validation rule: ` ^[0-9]+$ `.
         per_page ?: number; // Optional. A custom page size up to 100. Default is 30. Validation rule: ` ^[0-9]+$ `.
@@ -221,7 +215,7 @@ declare module GitHubApi {
     getFromUserOrg(
       msg:
       {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
         user: string; // Required.
         org: string; // Required.
         page ?: number; // Optional. Page number of the results to fetch. Validation rule: ` ^[0-9]+$ `.
@@ -230,118 +224,11 @@ declare module GitHubApi {
       callback: (err: any, result: any) => void
     );
   }
-  export interface gists {
-    getAll(
-      msg:
-      {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
-        page ?: number; // Optional. Page number of the results to fetch. Validation rule: ` ^[0-9]+$ `.
-        per_page ?: number; // Optional. A custom page size up to 100. Default is 30. Validation rule: ` ^[0-9]+$ `.
-        since ?: string; // Optional. Optional string of a timestamp in ISO 8601 format: YYYY-MM-DDTHH:MM:SSZ
-      },
-      callback: (err: any, result: any) => void
-    );
-    getFromUser(
-      msg:
-      {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
-        user: string; // Required.
-        page ?: number; // Optional. Page number of the results to fetch. Validation rule: ` ^[0-9]+$ `.
-        per_page ?: number; // Optional. A custom page size up to 100. Default is 30. Validation rule: ` ^[0-9]+$ `.
-        since ?: string; // Optional. Optional string of a timestamp in ISO 8601 format: YYYY-MM-DDTHH:MM:SSZ
-      },
-      callback: (err: any, result: any) => void
-    );
-    create(
-      msg:
-      {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
-        description ?: string; // Optional.
-        public: boolean; // Required.
-        files: any;//TODO::JSON // Required. Files that make up this gist. The key of which should be a required string filename and the value another required hash with parameters: 'content'
-      },
-      callback: (err: any, result: any) => void
-    );
-    edit(
-      msg:
-      {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
-        id: string; // Required.
-        description ?: string; // Optional.
-        files: any;//TODO::JSON // Required. Files that make up this gist. The key of which should be a required string filename and the value another required hash with parameters: 'content'
-      },
-      callback: (err: any, result: any) => void
-    );
-    public(
-      msg:
-      {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
-        since ?: string; // Optional. Optional string of a timestamp in ISO 8601 format: YYYY-MM-DDTHH:MM:SSZ
-      },
-      callback: (err: any, result: any) => void
-    );
-    starred(
-      msg:
-      {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
-        since ?: string; // Optional. Optional string of a timestamp in ISO 8601 format: YYYY-MM-DDTHH:MM:SSZ
-      },
-      callback: (err: any, result: any) => void
-    );
-    get(
-      msg:
-      {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
-        id: string; // Required.
-      },
-      callback: (err: any, result: any) => void
-    );
-    star(
-      msg:
-      {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
-        id: string; // Required.
-      },
-      callback: (err: any, result: any) => void
-    );
-    deleteStar(
-      msg:
-      {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
-        id: string; // Required.
-      },
-      callback: (err: any, result: any) => void
-    );
-    checkStar(
-      msg:
-      {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
-        id: string; // Required.
-      },
-      callback: (err: any, result: any) => void
-    );
-    fork(
-      msg:
-      {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
-        id: string; // Required.
-      },
-      callback: (err: any, result: any) => void
-    );
-    delete(
-      msg:
-      {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
-        id: string; // Required.
-      },
-      callback: (err: any, result: any) => void
-    );
-  }
   export interface gitdata {
     getBlob(
       msg:
       {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
         user: string; // Required.
         repo: string; // Required.
         sha: string; // Required.
@@ -353,7 +240,7 @@ declare module GitHubApi {
     createBlob(
       msg:
       {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
         user: string; // Required.
         repo: string; // Required.
         content: string; // Required.
@@ -364,7 +251,7 @@ declare module GitHubApi {
     getCommit(
       msg:
       {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
         user: string; // Required.
         repo: string; // Required.
         sha: string; // Required.
@@ -374,21 +261,21 @@ declare module GitHubApi {
     createCommit(
       msg:
       {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
         user: string; // Required.
         repo: string; // Required.
         message: string; // Required. String of the commit message
         tree: string; // Required. String of the SHA of the tree object this commit points to
-        parents: any[];//TODO::ARRAY // Required. Array of the SHAs of the commits that were the parents of this commit. If omitted or empty, the commit will be written as a root commit. For a single parent, an array of one SHA should be provided, for a merge commit, an array of more than one should be provided.
-        author ?: any;//TODO::JSON // Optional.
-        committer ?: any;//TODO::JSON // Optional.
+        parents: any[]; // TODO::ARRAY // Required. Array of the SHAs of the commits that were the parents of this commit. If omitted or empty, the commit will be written as a root commit. For a single parent, an array of one SHA should be provided, for a merge commit, an array of more than one should be provided.
+        author ?: any; // TODO::JSON // Optional.
+        committer ?: any; // TODO::JSON // Optional.
       },
       callback: (err: any, result: any) => void
     );
     getReference(
       msg:
       {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
         user: string; // Required.
         repo: string; // Required.
         ref: string; // Required. String of the name of the fully qualified reference (ie: heads/master). If it doesn’t have at least one slash, it will be rejected.
@@ -398,7 +285,7 @@ declare module GitHubApi {
     getAllReferences(
       msg:
       {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
         user: string; // Required.
         repo: string; // Required.
         page ?: number; // Optional. Page number of the results to fetch. Validation rule: ` ^[0-9]+$ `.
@@ -409,7 +296,7 @@ declare module GitHubApi {
     createReference(
       msg:
       {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
         user: string; // Required.
         repo: string; // Required.
         ref: string; // Required. String of the name of the fully qualified reference (ie: heads/master). If it doesn’t have at least one slash, it will be rejected.
@@ -420,7 +307,7 @@ declare module GitHubApi {
     updateReference(
       msg:
       {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
         user: string; // Required.
         repo: string; // Required.
         ref: string; // Required. String of the name of the fully qualified reference (ie: heads/master). If it doesn’t have at least one slash, it will be rejected.
@@ -432,7 +319,7 @@ declare module GitHubApi {
     deleteReference(
       msg:
       {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
         user: string; // Required.
         repo: string; // Required.
         ref: string; // Required. String of the name of the fully qualified reference (ie: heads/master). If it doesn’t have at least one slash, it will be rejected.
@@ -442,7 +329,7 @@ declare module GitHubApi {
     getTag(
       msg:
       {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
         user: string; // Required.
         repo: string; // Required.
         sha: string; // Required.
@@ -452,21 +339,21 @@ declare module GitHubApi {
     createTag(
       msg:
       {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
         user: string; // Required.
         repo: string; // Required.
         tag: string; // Required. String of the tag
         message: string; // Required. String of the tag message
         object: string; // Required. String of the SHA of the git object this is tagging
         type: string; // Required. String of the type of the object we’re tagging. Normally this is a commit but it can also be a tree or a blob.
-        tagger: any;//TODO::JSON // Required. JSON object that contains the following keys: `name` - String of the name of the author of the tag, `email` - String of the email of the author of the tag, `date` - Timestamp of when this object was tagged
+        tagger: any; // TODO::JSON // Required. JSON object that contains the following keys: `name` - String of the name of the author of the tag, `email` - String of the email of the author of the tag, `date` - Timestamp of when this object was tagged
       },
       callback: (err: any, result: any) => void
     );
     getTree(
       msg:
       {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
         user: string; // Required.
         repo: string; // Required.
         sha: string; // Required.
@@ -477,11 +364,338 @@ declare module GitHubApi {
     createTree(
       msg:
       {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
         user: string; // Required.
         repo: string; // Required.
-        tree: any;//TODO::JSON // Required. Array of Hash objects (of path, mode, type and sha) specifying a tree structure
+        tree: any; // TODO::JSON // Required. Array of Hash objects (of path, mode, type and sha) specifying a tree structure
         base_tree ?: string; // Optional. String of the SHA1 of the tree you want to update with new data
+      },
+      callback: (err: any, result: any) => void
+    );
+  }
+  export interface gists {
+    getAll(
+      msg:
+      {
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        page ?: number; // Optional. Page number of the results to fetch. Validation rule: ` ^[0-9]+$ `.
+        per_page ?: number; // Optional. A custom page size up to 100. Default is 30. Validation rule: ` ^[0-9]+$ `.
+        since ?: string; // Optional. Optional string of a timestamp in ISO 8601 format: YYYY-MM-DDTHH:MM:SSZ
+      },
+      callback: (err: any, result: any) => void
+    );
+    getFromUser(
+      msg:
+      {
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        user: string; // Required.
+        page ?: number; // Optional. Page number of the results to fetch. Validation rule: ` ^[0-9]+$ `.
+        per_page ?: number; // Optional. A custom page size up to 100. Default is 30. Validation rule: ` ^[0-9]+$ `.
+        since ?: string; // Optional. Optional string of a timestamp in ISO 8601 format: YYYY-MM-DDTHH:MM:SSZ
+      },
+      callback: (err: any, result: any) => void
+    );
+    create(
+      msg:
+      {
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        description ?: string; // Optional.
+        public: boolean; // Required.
+        files: any; // TODO::JSON // Required. Files that make up this gist. The key of which should be a required string filename and the value another required hash with parameters: 'content'
+      },
+      callback: (err: any, result: any) => void
+    );
+    edit(
+      msg:
+      {
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        id: string; // Required.
+        description ?: string; // Optional.
+        files: any; // TODO::JSON // Required. Files that make up this gist. The key of which should be a required string filename and the value another required hash with parameters: 'content'
+      },
+      callback: (err: any, result: any) => void
+    );
+    public(
+      msg:
+      {
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        since ?: string; // Optional. Optional string of a timestamp in ISO 8601 format: YYYY-MM-DDTHH:MM:SSZ
+      },
+      callback: (err: any, result: any) => void
+    );
+    starred(
+      msg:
+      {
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        since ?: string; // Optional. Optional string of a timestamp in ISO 8601 format: YYYY-MM-DDTHH:MM:SSZ
+      },
+      callback: (err: any, result: any) => void
+    );
+    get(
+      msg:
+      {
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        id: string; // Required.
+      },
+      callback: (err: any, result: any) => void
+    );
+    star(
+      msg:
+      {
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        id: string; // Required.
+      },
+      callback: (err: any, result: any) => void
+    );
+    deleteStar(
+      msg:
+      {
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        id: string; // Required.
+      },
+      callback: (err: any, result: any) => void
+    );
+    checkStar(
+      msg:
+      {
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        id: string; // Required.
+      },
+      callback: (err: any, result: any) => void
+    );
+    fork(
+      msg:
+      {
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        id: string; // Required.
+      },
+      callback: (err: any, result: any) => void
+    );
+    delete(
+      msg:
+      {
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        id: string; // Required.
+      },
+      callback: (err: any, result: any) => void
+    );
+  }
+  export interface orgs {
+    getFromUser(
+      msg:
+      {
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        user: string; // Required.
+        page ?: number; // Optional. Page number of the results to fetch. Validation rule: ` ^[0-9]+$ `.
+        per_page ?: number; // Optional. A custom page size up to 100. Default is 30. Validation rule: ` ^[0-9]+$ `.
+      },
+      callback: (err: any, result: any) => void
+    );
+    get(
+      msg:
+      {
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        org: string; // Required.
+        page ?: number; // Optional. Page number of the results to fetch. Validation rule: ` ^[0-9]+$ `.
+        per_page ?: number; // Optional. A custom page size up to 100. Default is 30. Validation rule: ` ^[0-9]+$ `.
+      },
+      callback: (err: any, result: any) => void
+    );
+    update(
+      msg:
+      {
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        org: string; // Required.
+        billing_email ?: string; // Optional. Optional string - Billing email address. This address is not publicized.
+        company ?: string; // Optional.
+        email ?: string; // Optional. Optional string - Publicly visible email address.
+        location ?: string; // Optional.
+        name ?: string; // Optional.
+      },
+      callback: (err: any, result: any) => void
+    );
+    getMembers(
+      msg:
+      {
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        org: string; // Required.
+        page ?: number; // Optional. Page number of the results to fetch. Validation rule: ` ^[0-9]+$ `.
+        per_page ?: number; // Optional. A custom page size up to 100. Default is 30. Validation rule: ` ^[0-9]+$ `.
+      },
+      callback: (err: any, result: any) => void
+    );
+    getMember(
+      msg:
+      {
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        org: string; // Required.
+        user: string; // Required.
+      },
+      callback: (err: any, result: any) => void
+    );
+    removeMember(
+      msg:
+      {
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        org: string; // Required.
+        user: string; // Required.
+      },
+      callback: (err: any, result: any) => void
+    );
+    getPublicMembers(
+      msg:
+      {
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        org: string; // Required.
+      },
+      callback: (err: any, result: any) => void
+    );
+    getPublicMember(
+      msg:
+      {
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        org: string; // Required.
+        user: string; // Required.
+      },
+      callback: (err: any, result: any) => void
+    );
+    publicizeMembership(
+      msg:
+      {
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        org: string; // Required.
+        user: string; // Required.
+      },
+      callback: (err: any, result: any) => void
+    );
+    concealMembership(
+      msg:
+      {
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        org: string; // Required.
+        user: string; // Required.
+      },
+      callback: (err: any, result: any) => void
+    );
+    getTeams(
+      msg:
+      {
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        org: string; // Required.
+      },
+      callback: (err: any, result: any) => void
+    );
+    getTeam(
+      msg:
+      {
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        id: string; // Required.
+      },
+      callback: (err: any, result: any) => void
+    );
+    createTeam(
+      msg:
+      {
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        org: string; // Required.
+        name: string; // Required.
+        repo_names ?: any[]; // TODO::ARRAY // Optional. Optional array of strings
+        permission ?: string; // Optional. `pull` - team members can pull, but not push or administer this repositories (Default), `push` - team members can pull and push, but not administer this repositores, `admin` - team members can pull, push and administer these repositories. Validation rule: ` ^(pull|push|admin)$ `.
+      },
+      callback: (err: any, result: any) => void
+    );
+    updateTeam(
+      msg:
+      {
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        id: string; // Required.
+        name: string; // Required.
+        permission ?: string; // Optional. `pull` - team members can pull, but not push or administer this repositories (Default), `push` - team members can pull and push, but not administer this repositores, `admin` - team members can pull, push and administer these repositories. Validation rule: ` ^(pull|push|admin)$ `.
+      },
+      callback: (err: any, result: any) => void
+    );
+    deleteTeam(
+      msg:
+      {
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        id: string; // Required.
+      },
+      callback: (err: any, result: any) => void
+    );
+    getTeamMembers(
+      msg:
+      {
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        id: string; // Required.
+        page ?: number; // Optional. Page number of the results to fetch. Validation rule: ` ^[0-9]+$ `.
+        per_page ?: number; // Optional. A custom page size up to 100. Default is 30. Validation rule: ` ^[0-9]+$ `.
+      },
+      callback: (err: any, result: any) => void
+    );
+    getTeamMember(
+      msg:
+      {
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        id: string; // Required.
+        user: string; // Required.
+      },
+      callback: (err: any, result: any) => void
+    );
+    addTeamMember(
+      msg:
+      {
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        id: string; // Required.
+        user: string; // Required.
+      },
+      callback: (err: any, result: any) => void
+    );
+    deleteTeamMember(
+      msg:
+      {
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        id: string; // Required.
+        user: string; // Required.
+      },
+      callback: (err: any, result: any) => void
+    );
+    getTeamRepos(
+      msg:
+      {
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        id: string; // Required.
+        page ?: number; // Optional. Page number of the results to fetch. Validation rule: ` ^[0-9]+$ `.
+        per_page ?: number; // Optional. A custom page size up to 100. Default is 30. Validation rule: ` ^[0-9]+$ `.
+      },
+      callback: (err: any, result: any) => void
+    );
+    getTeamRepo(
+      msg:
+      {
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        id: string; // Required.
+        user: string; // Required.
+        repo: string; // Required.
+      },
+      callback: (err: any, result: any) => void
+    );
+    addTeamRepo(
+      msg:
+      {
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        id: string; // Required.
+        user: string; // Required.
+        repo: string; // Required.
+      },
+      callback: (err: any, result: any) => void
+    );
+    deleteTeamRepo(
+      msg:
+      {
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        id: string; // Required.
+        user: string; // Required.
+        repo: string; // Required.
       },
       callback: (err: any, result: any) => void
     );
@@ -490,7 +704,7 @@ declare module GitHubApi {
     getAll(
       msg:
       {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
         filter ?: string; // Optional. Validation rule: ` ^(all|assigned|created|mentioned|subscribed)$ `.
         state ?: string; // Optional. Validation rule: ` ^(open|closed)$ `.
         labels ?: string; // Optional. String list of comma separated Label names. Example: bug,ui,@high
@@ -505,7 +719,7 @@ declare module GitHubApi {
     repoIssues(
       msg:
       {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
         user: string; // Required.
         repo: string; // Required.
         milestone ?: string; // Optional. Validation rule: ` ^([0-9]+|none|\*)$ `.
@@ -524,7 +738,7 @@ declare module GitHubApi {
     getRepoIssue(
       msg:
       {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
         user: string; // Required.
         repo: string; // Required.
         number: number; // Required. Validation rule: ` ^[0-9]+$ `.
@@ -534,21 +748,21 @@ declare module GitHubApi {
     create(
       msg:
       {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
         user: string; // Required.
         repo: string; // Required.
         title: string; // Required.
         body ?: string; // Optional.
         assignee ?: string; // Optional. Optional string - Login for the user that this issue should be assigned to.
         milestone ?: number; // Optional. Optional number - Milestone to associate this issue with. Validation rule: ` ^[0-9]+$ `.
-        labels: any;//TODO::JSON // Required. Optional array of strings - Labels to associate with this issue.
+        labels: any; // TODO::JSON // Required. Optional array of strings - Labels to associate with this issue.
       },
       callback: (err: any, result: any) => void
     );
     edit(
       msg:
       {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
         user: string; // Required.
         repo: string; // Required.
         number: number; // Required. Validation rule: ` ^[0-9]+$ `.
@@ -556,7 +770,7 @@ declare module GitHubApi {
         body ?: string; // Optional.
         assignee ?: string; // Optional. Optional string - Login for the user that this issue should be assigned to.
         milestone ?: number; // Optional. Optional number - Milestone to associate this issue with. Validation rule: ` ^[0-9]+$ `.
-        labels ?: any;//TODO::JSON // Optional. Optional array of strings - Labels to associate with this issue.
+        labels ?: any; // TODO::JSON // Optional. Optional array of strings - Labels to associate with this issue.
         state ?: string; // Optional. open or closed Validation rule: ` ^(open|closed)$ `.
       },
       callback: (err: any, result: any) => void
@@ -564,7 +778,7 @@ declare module GitHubApi {
     repoComments(
       msg:
       {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
         user: string; // Required.
         repo: string; // Required.
         sort ?: string; // Optional. Validation rule: ` ^(created|updated)$ `.
@@ -578,7 +792,7 @@ declare module GitHubApi {
     getComments(
       msg:
       {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
         user: string; // Required.
         repo: string; // Required.
         number: number; // Required. Validation rule: ` ^[0-9]+$ `.
@@ -590,7 +804,7 @@ declare module GitHubApi {
     getComment(
       msg:
       {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
         user: string; // Required.
         repo: string; // Required.
         id: string; // Required.
@@ -600,7 +814,7 @@ declare module GitHubApi {
     createComment(
       msg:
       {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
         user: string; // Required.
         repo: string; // Required.
         number: number; // Required. Validation rule: ` ^[0-9]+$ `.
@@ -611,7 +825,7 @@ declare module GitHubApi {
     editComment(
       msg:
       {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
         user: string; // Required.
         repo: string; // Required.
         id: string; // Required.
@@ -622,7 +836,7 @@ declare module GitHubApi {
     deleteComment(
       msg:
       {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
         user: string; // Required.
         repo: string; // Required.
         id: string; // Required.
@@ -632,7 +846,7 @@ declare module GitHubApi {
     getEvents(
       msg:
       {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
         user: string; // Required.
         repo: string; // Required.
         number: number; // Required. Validation rule: ` ^[0-9]+$ `.
@@ -644,7 +858,7 @@ declare module GitHubApi {
     getRepoEvents(
       msg:
       {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
         user: string; // Required.
         repo: string; // Required.
         page ?: number; // Optional. Page number of the results to fetch. Validation rule: ` ^[0-9]+$ `.
@@ -655,7 +869,7 @@ declare module GitHubApi {
     getEvent(
       msg:
       {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
         user: string; // Required.
         repo: string; // Required.
         id: string; // Required.
@@ -665,7 +879,7 @@ declare module GitHubApi {
     getLabels(
       msg:
       {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
         user: string; // Required.
         repo: string; // Required.
       },
@@ -674,7 +888,7 @@ declare module GitHubApi {
     getLabel(
       msg:
       {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
         user: string; // Required.
         repo: string; // Required.
         name: string; // Required.
@@ -684,7 +898,7 @@ declare module GitHubApi {
     createLabel(
       msg:
       {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
         user: string; // Required.
         repo: string; // Required.
         name: string; // Required.
@@ -695,7 +909,7 @@ declare module GitHubApi {
     updateLabel(
       msg:
       {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
         user: string; // Required.
         repo: string; // Required.
         name: string; // Required.
@@ -706,7 +920,7 @@ declare module GitHubApi {
     deleteLabel(
       msg:
       {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
         user: string; // Required.
         repo: string; // Required.
         name: string; // Required.
@@ -716,7 +930,7 @@ declare module GitHubApi {
     getAllMilestones(
       msg:
       {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
         user: string; // Required.
         repo: string; // Required.
         state ?: string; // Optional. Validation rule: ` ^(open|closed)$ `.
@@ -729,7 +943,7 @@ declare module GitHubApi {
     getMilestone(
       msg:
       {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
         user: string; // Required.
         repo: string; // Required.
         number: number; // Required. Validation rule: ` ^[0-9]+$ `.
@@ -739,7 +953,7 @@ declare module GitHubApi {
     createMilestone(
       msg:
       {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
         user: string; // Required.
         repo: string; // Required.
         title: string; // Required.
@@ -752,7 +966,7 @@ declare module GitHubApi {
     updateMilestone(
       msg:
       {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
         user: string; // Required.
         repo: string; // Required.
         number: number; // Required. Validation rule: ` ^[0-9]+$ `.
@@ -766,7 +980,7 @@ declare module GitHubApi {
     deleteMilestone(
       msg:
       {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
         user: string; // Required.
         repo: string; // Required.
         number: number; // Required. Validation rule: ` ^[0-9]+$ `.
@@ -778,230 +992,10 @@ declare module GitHubApi {
     render(
       msg:
       {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
         text: string; // Required. The Markdown text to render
         mode ?: string; // Optional. The rendering mode, `markdown` to render a document as plain Markdown, just like README files are rendered. `gfm` to render a document as user-content, e.g. like user comments or issues are rendered. In GFM mode, hard line breaks are always taken into account, and issue and user mentions are linked accordingly. Validation rule: ` ^(markdown|gfm)$ `.
         context ?: string; // Optional. The repository context, only taken into account when rendering as `gfm`
-      },
-      callback: (err: any, result: any) => void
-    );
-  }
-  export interface orgs {
-    getFromUser(
-      msg:
-      {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
-        user: string; // Required.
-        page ?: number; // Optional. Page number of the results to fetch. Validation rule: ` ^[0-9]+$ `.
-        per_page ?: number; // Optional. A custom page size up to 100. Default is 30. Validation rule: ` ^[0-9]+$ `.
-      },
-      callback: (err: any, result: any) => void
-    );
-    get(
-      msg:
-      {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
-        org: string; // Required.
-        page ?: number; // Optional. Page number of the results to fetch. Validation rule: ` ^[0-9]+$ `.
-        per_page ?: number; // Optional. A custom page size up to 100. Default is 30. Validation rule: ` ^[0-9]+$ `.
-      },
-      callback: (err: any, result: any) => void
-    );
-    update(
-      msg:
-      {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
-        org: string; // Required.
-        billing_email ?: string; // Optional. Optional string - Billing email address. This address is not publicized.
-        company ?: string; // Optional.
-        email ?: string; // Optional. Optional string - Publicly visible email address.
-        location ?: string; // Optional.
-        name ?: string; // Optional.
-      },
-      callback: (err: any, result: any) => void
-    );
-    getMembers(
-      msg:
-      {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
-        org: string; // Required.
-        page ?: number; // Optional. Page number of the results to fetch. Validation rule: ` ^[0-9]+$ `.
-        per_page ?: number; // Optional. A custom page size up to 100. Default is 30. Validation rule: ` ^[0-9]+$ `.
-      },
-      callback: (err: any, result: any) => void
-    );
-    getMember(
-      msg:
-      {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
-        org: string; // Required.
-        user: string; // Required.
-      },
-      callback: (err: any, result: any) => void
-    );
-    removeMember(
-      msg:
-      {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
-        org: string; // Required.
-        user: string; // Required.
-      },
-      callback: (err: any, result: any) => void
-    );
-    getPublicMembers(
-      msg:
-      {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
-        org: string; // Required.
-      },
-      callback: (err: any, result: any) => void
-    );
-    getPublicMember(
-      msg:
-      {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
-        org: string; // Required.
-        user: string; // Required.
-      },
-      callback: (err: any, result: any) => void
-    );
-    publicizeMembership(
-      msg:
-      {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
-        org: string; // Required.
-        user: string; // Required.
-      },
-      callback: (err: any, result: any) => void
-    );
-    concealMembership(
-      msg:
-      {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
-        org: string; // Required.
-        user: string; // Required.
-      },
-      callback: (err: any, result: any) => void
-    );
-    getTeams(
-      msg:
-      {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
-        org: string; // Required.
-      },
-      callback: (err: any, result: any) => void
-    );
-    getTeam(
-      msg:
-      {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
-        id: string; // Required.
-      },
-      callback: (err: any, result: any) => void
-    );
-    createTeam(
-      msg:
-      {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
-        org: string; // Required.
-        name: string; // Required.
-        repo_names ?: any[];//TODO::ARRAY // Optional. Optional array of strings
-        permission ?: string; // Optional. `pull` - team members can pull, but not push or administer this repositories (Default), `push` - team members can pull and push, but not administer this repositores, `admin` - team members can pull, push and administer these repositories. Validation rule: ` ^(pull|push|admin)$ `.
-      },
-      callback: (err: any, result: any) => void
-    );
-    updateTeam(
-      msg:
-      {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
-        id: string; // Required.
-        name: string; // Required.
-        permission ?: string; // Optional. `pull` - team members can pull, but not push or administer this repositories (Default), `push` - team members can pull and push, but not administer this repositores, `admin` - team members can pull, push and administer these repositories. Validation rule: ` ^(pull|push|admin)$ `.
-      },
-      callback: (err: any, result: any) => void
-    );
-    deleteTeam(
-      msg:
-      {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
-        id: string; // Required.
-      },
-      callback: (err: any, result: any) => void
-    );
-    getTeamMembers(
-      msg:
-      {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
-        id: string; // Required.
-        page ?: number; // Optional. Page number of the results to fetch. Validation rule: ` ^[0-9]+$ `.
-        per_page ?: number; // Optional. A custom page size up to 100. Default is 30. Validation rule: ` ^[0-9]+$ `.
-      },
-      callback: (err: any, result: any) => void
-    );
-    getTeamMember(
-      msg:
-      {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
-        id: string; // Required.
-        user: string; // Required.
-      },
-      callback: (err: any, result: any) => void
-    );
-    addTeamMember(
-      msg:
-      {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
-        id: string; // Required.
-        user: string; // Required.
-      },
-      callback: (err: any, result: any) => void
-    );
-    deleteTeamMember(
-      msg:
-      {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
-        id: string; // Required.
-        user: string; // Required.
-      },
-      callback: (err: any, result: any) => void
-    );
-    getTeamRepos(
-      msg:
-      {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
-        id: string; // Required.
-        page ?: number; // Optional. Page number of the results to fetch. Validation rule: ` ^[0-9]+$ `.
-        per_page ?: number; // Optional. A custom page size up to 100. Default is 30. Validation rule: ` ^[0-9]+$ `.
-      },
-      callback: (err: any, result: any) => void
-    );
-    getTeamRepo(
-      msg:
-      {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
-        id: string; // Required.
-        user: string; // Required.
-        repo: string; // Required.
-      },
-      callback: (err: any, result: any) => void
-    );
-    addTeamRepo(
-      msg:
-      {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
-        id: string; // Required.
-        user: string; // Required.
-        repo: string; // Required.
-      },
-      callback: (err: any, result: any) => void
-    );
-    deleteTeamRepo(
-      msg:
-      {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
-        id: string; // Required.
-        user: string; // Required.
-        repo: string; // Required.
       },
       callback: (err: any, result: any) => void
     );
@@ -1010,7 +1004,7 @@ declare module GitHubApi {
     getAll(
       msg:
       {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
         user: string; // Required.
         repo: string; // Required.
         state ?: string; // Optional. Validation rule: ` ^(open|closed)$ `.
@@ -1022,7 +1016,7 @@ declare module GitHubApi {
     get(
       msg:
       {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
         user: string; // Required.
         repo: string; // Required.
         number: number; // Required. Validation rule: ` ^[0-9]+$ `.
@@ -1032,7 +1026,7 @@ declare module GitHubApi {
     create(
       msg:
       {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
         user: string; // Required.
         repo: string; // Required.
         title: string; // Required.
@@ -1045,7 +1039,7 @@ declare module GitHubApi {
     createFromIssue(
       msg:
       {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
         user: string; // Required.
         repo: string; // Required.
         issue: number; // Required. Validation rule: ` ^[0-9]+$ `.
@@ -1057,7 +1051,7 @@ declare module GitHubApi {
     update(
       msg:
       {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
         user: string; // Required.
         repo: string; // Required.
         number: number; // Required. Validation rule: ` ^[0-9]+$ `.
@@ -1070,7 +1064,7 @@ declare module GitHubApi {
     getCommits(
       msg:
       {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
         user: string; // Required.
         repo: string; // Required.
         number: number; // Required. Validation rule: ` ^[0-9]+$ `.
@@ -1082,7 +1076,7 @@ declare module GitHubApi {
     getFiles(
       msg:
       {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
         user: string; // Required.
         repo: string; // Required.
         number: number; // Required. Validation rule: ` ^[0-9]+$ `.
@@ -1094,7 +1088,7 @@ declare module GitHubApi {
     getMerged(
       msg:
       {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
         user: string; // Required.
         repo: string; // Required.
         number: number; // Required. Validation rule: ` ^[0-9]+$ `.
@@ -1106,7 +1100,7 @@ declare module GitHubApi {
     merge(
       msg:
       {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
         user: string; // Required.
         repo: string; // Required.
         number: number; // Required. Validation rule: ` ^[0-9]+$ `.
@@ -1117,7 +1111,7 @@ declare module GitHubApi {
     getComments(
       msg:
       {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
         user: string; // Required.
         repo: string; // Required.
         number: number; // Required. Validation rule: ` ^[0-9]+$ `.
@@ -1129,7 +1123,7 @@ declare module GitHubApi {
     getComment(
       msg:
       {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
         user: string; // Required.
         repo: string; // Required.
         number: number; // Required. Validation rule: ` ^[0-9]+$ `.
@@ -1139,7 +1133,7 @@ declare module GitHubApi {
     createComment(
       msg:
       {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
         user: string; // Required.
         repo: string; // Required.
         number: number; // Required. Validation rule: ` ^[0-9]+$ `.
@@ -1153,7 +1147,7 @@ declare module GitHubApi {
     createCommentReply(
       msg:
       {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
         user: string; // Required.
         repo: string; // Required.
         number: number; // Required. Validation rule: ` ^[0-9]+$ `.
@@ -1165,7 +1159,7 @@ declare module GitHubApi {
     updateComment(
       msg:
       {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
         user: string; // Required.
         repo: string; // Required.
         number: number; // Required. Validation rule: ` ^[0-9]+$ `.
@@ -1176,7 +1170,7 @@ declare module GitHubApi {
     deleteComment(
       msg:
       {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
         user: string; // Required.
         repo: string; // Required.
         number: number; // Required. Validation rule: ` ^[0-9]+$ `.
@@ -1188,7 +1182,7 @@ declare module GitHubApi {
     issues(
       msg:
       {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
         user: string; // Required.
         repo: string; // Required.
         state: string; // Required. open or closed Validation rule: ` ^(open|closed)$ `.
@@ -1199,7 +1193,7 @@ declare module GitHubApi {
     repos(
       msg:
       {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
         keyword: string; // Required. Search term
         language ?: string; // Optional. Filter results by language, see https://github.com/languages
         start_page ?: number; // Optional. Page number to fetch Validation rule: ` ^[0-9]+$ `.
@@ -1209,7 +1203,7 @@ declare module GitHubApi {
     users(
       msg:
       {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
         keyword: string; // Required. Keyword search parameters
         start_page ?: number; // Optional. Page number to fetch Validation rule: ` ^[0-9]+$ `.
       },
@@ -1218,7 +1212,7 @@ declare module GitHubApi {
     email(
       msg:
       {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
         email: string; // Required. Email address
       },
       callback: (err: any, result: any) => void
@@ -1228,7 +1222,7 @@ declare module GitHubApi {
     get(
       msg:
       {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
         user: string; // Required.
         repo: string; // Required.
         sha: string; // Required.
@@ -1238,7 +1232,7 @@ declare module GitHubApi {
     create(
       msg:
       {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
         user: string; // Required.
         repo: string; // Required.
         sha: string; // Required.
@@ -1249,11 +1243,712 @@ declare module GitHubApi {
       callback: (err: any, result: any) => void
     );
   }
+  export interface repos {
+    getAll(
+      msg:
+      {
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        type ?: string; // Optional. Possible values: `all`, `owner`, `public`, `private`, `member`. Default: `all`. Validation rule: ` ^(all|owner|public|private|member)$ `.
+        sort ?: string; // Optional. Possible values: `created`, `updated`, `pushed`, `full_name`. Default: `full_name`. Validation rule: ` ^(created|updated|pushed|full_name)$ `.
+        direction ?: string; // Optional. Validation rule: ` ^(asc|desc)$ `.
+        page ?: number; // Optional. Page number of the results to fetch. Validation rule: ` ^[0-9]+$ `.
+        per_page ?: number; // Optional. A custom page size up to 100. Default is 30. Validation rule: ` ^[0-9]+$ `.
+      },
+      callback: (err: any, result: any) => void
+    );
+    getFromUser(
+      msg:
+      {
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        user: string; // Required.
+        type ?: string; // Optional. Possible values: `all`, `owner`, `member`. Default: `public`. Validation rule: ` ^(all|owner|member)$ `.
+        sort ?: string; // Optional. Possible values: `created`, `updated`, `pushed`, `full_name`. Default: `full_name`. Validation rule: ` ^(created|updated|pushed|full_name)$ `.
+        direction ?: string; // Optional. Validation rule: ` ^(asc|desc)$ `.
+        page ?: number; // Optional. Page number of the results to fetch. Validation rule: ` ^[0-9]+$ `.
+        per_page ?: number; // Optional. A custom page size up to 100. Default is 30. Validation rule: ` ^[0-9]+$ `.
+      },
+      callback: (err: any, result: any) => void
+    );
+    getFromOrg(
+      msg:
+      {
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        org: string; // Required.
+        type ?: string; // Optional. Possible values: `all`, `public`, `member`. Default: `all`. Validation rule: ` ^(all|public|member)$ `.
+        page ?: number; // Optional. Page number of the results to fetch. Validation rule: ` ^[0-9]+$ `.
+        per_page ?: number; // Optional. A custom page size up to 100. Default is 30. Validation rule: ` ^[0-9]+$ `.
+      },
+      callback: (err: any, result: any) => void
+    );
+    create(
+      msg:
+      {
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        name: string; // Required.
+        description ?: string; // Optional.
+        homepage ?: string; // Optional.
+        private ?: boolean; // Optional. Optional boolean - true to create a private repository, false to create a public one. Creating private repositories requires a paid GitHub account. Default is false.
+        has_issues ?: boolean; // Optional. Optional boolean - true to enable issues for this repository, false to disable them. Default is true.
+        has_wiki ?: boolean; // Optional. Optional boolean - true to enable the wiki for this repository, false to disable it. Default is true.
+        has_downloads ?: boolean; // Optional. Optional boolean - true to enable downloads for this repository, false to disable them. Default is true.
+        auto_init ?: boolean; // Optional. Optional boolean - true to create an initial commit with empty README. Default is false
+        gitignore_template ?: string; // Optional. Optional string - Desired language or platform .gitignore template to apply. Ignored if auto_init parameter is not provided.
+      },
+      callback: (err: any, result: any) => void
+    );
+    createFromOrg(
+      msg:
+      {
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        org: string; // Required.
+        name: string; // Required.
+        description ?: string; // Optional.
+        homepage ?: string; // Optional.
+        private ?: boolean; // Optional. Optional boolean - true to create a private repository, false to create a public one. Creating private repositories requires a paid GitHub account. Default is false.
+        has_issues ?: boolean; // Optional. Optional boolean - true to enable issues for this repository, false to disable them. Default is true.
+        has_wiki ?: boolean; // Optional. Optional boolean - true to enable the wiki for this repository, false to disable it. Default is true.
+        has_downloads ?: boolean; // Optional. Optional boolean - true to enable downloads for this repository, false to disable them. Default is true.
+        auto_init ?: boolean; // Optional. Optional boolean - true to create an initial commit with empty README. Default is false
+        gitignore_template ?: string; // Optional. Optional string - Desired language or platform .gitignore template to apply. Ignored if auto_init parameter is not provided.
+        team_id ?: number; // Optional. Optional number - The id of the team that will be granted access to this repository. This is only valid when creating a repo in an organization. Validation rule: ` ^[0-9]+$ `.
+      },
+      callback: (err: any, result: any) => void
+    );
+    get(
+      msg:
+      {
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        user: string; // Required.
+        repo: string; // Required.
+      },
+      callback: (err: any, result: any) => void
+    );
+    update(
+      msg:
+      {
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        user: string; // Required.
+        repo: string; // Required.
+        name: string; // Required.
+        description ?: string; // Optional.
+        homepage ?: string; // Optional.
+        private ?: boolean; // Optional. Optional boolean - true to create a private repository, false to create a public one. Creating private repositories requires a paid GitHub account. Default is false.
+        has_issues ?: boolean; // Optional. Optional boolean - true to enable issues for this repository, false to disable them. Default is true.
+        has_wiki ?: boolean; // Optional. Optional boolean - true to enable the wiki for this repository, false to disable it. Default is true.
+        has_downloads ?: boolean; // Optional. Optional boolean - true to enable downloads for this repository, false to disable them. Default is true.
+      },
+      callback: (err: any, result: any) => void
+    );
+    delete(
+      msg:
+      {
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        user: string; // Required.
+        repo: string; // Required.
+      },
+      callback: (err: any, result: any) => void
+    );
+    merge(
+      msg:
+      {
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        user: string; // Required.
+        repo: string; // Required.
+        base: string; // Required. Required string - The branch (or git ref) you want your changes pulled into. This should be an existing branch on the current repository. You cannot submit a pull request to one repo that requests a merge to a base of another repo.
+        head: string; // Required. Required string - The branch (or git ref) where your changes are implemented.
+        commit_message ?: string; // Optional. Optional string - Commit message to use for the merge commit. If omitted, a default message will be used.
+      },
+      callback: (err: any, result: any) => void
+    );
+    getContributors(
+      msg:
+      {
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        user: string; // Required.
+        repo: string; // Required.
+        anon ?: boolean; // Optional. Optional flag. Set to 1 or true to include anonymous contributors in results.
+        page ?: number; // Optional. Page number of the results to fetch. Validation rule: ` ^[0-9]+$ `.
+        per_page ?: number; // Optional. A custom page size up to 100. Default is 30. Validation rule: ` ^[0-9]+$ `.
+      },
+      callback: (err: any, result: any) => void
+    );
+    getLanguages(
+      msg:
+      {
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        user: string; // Required.
+        repo: string; // Required.
+        page ?: number; // Optional. Page number of the results to fetch. Validation rule: ` ^[0-9]+$ `.
+        per_page ?: number; // Optional. A custom page size up to 100. Default is 30. Validation rule: ` ^[0-9]+$ `.
+      },
+      callback: (err: any, result: any) => void
+    );
+    getTeams(
+      msg:
+      {
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        user: string; // Required.
+        repo: string; // Required.
+        page ?: number; // Optional. Page number of the results to fetch. Validation rule: ` ^[0-9]+$ `.
+        per_page ?: number; // Optional. A custom page size up to 100. Default is 30. Validation rule: ` ^[0-9]+$ `.
+      },
+      callback: (err: any, result: any) => void
+    );
+    getTags(
+      msg:
+      {
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        user: string; // Required.
+        repo: string; // Required.
+        page ?: number; // Optional. Page number of the results to fetch. Validation rule: ` ^[0-9]+$ `.
+        per_page ?: number; // Optional. A custom page size up to 100. Default is 30. Validation rule: ` ^[0-9]+$ `.
+      },
+      callback: (err: any, result: any) => void
+    );
+    getBranches(
+      msg:
+      {
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        user: string; // Required.
+        repo: string; // Required.
+        page ?: number; // Optional. Page number of the results to fetch. Validation rule: ` ^[0-9]+$ `.
+        per_page ?: number; // Optional. A custom page size up to 100. Default is 30. Validation rule: ` ^[0-9]+$ `.
+      },
+      callback: (err: any, result: any) => void
+    );
+    getBranch(
+      msg:
+      {
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        user: string; // Required.
+        repo: string; // Required.
+        branch: string; // Required.
+        page ?: number; // Optional. Page number of the results to fetch. Validation rule: ` ^[0-9]+$ `.
+        per_page ?: number; // Optional. A custom page size up to 100. Default is 30. Validation rule: ` ^[0-9]+$ `.
+      },
+      callback: (err: any, result: any) => void
+    );
+    getCollaborators(
+      msg:
+      {
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        user: string; // Required.
+        repo: string; // Required.
+        page ?: number; // Optional. Page number of the results to fetch. Validation rule: ` ^[0-9]+$ `.
+        per_page ?: number; // Optional. A custom page size up to 100. Default is 30. Validation rule: ` ^[0-9]+$ `.
+      },
+      callback: (err: any, result: any) => void
+    );
+    getCollaborator(
+      msg:
+      {
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        user: string; // Required.
+        repo: string; // Required.
+        collabuser: string; // Required.
+      },
+      callback: (err: any, result: any) => void
+    );
+    addCollaborator(
+      msg:
+      {
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        user: string; // Required.
+        repo: string; // Required.
+        collabuser: string; // Required.
+      },
+      callback: (err: any, result: any) => void
+    );
+    removeCollaborator(
+      msg:
+      {
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        user: string; // Required.
+        repo: string; // Required.
+        collabuser: string; // Required.
+      },
+      callback: (err: any, result: any) => void
+    );
+    getCommits(
+      msg:
+      {
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        user: string; // Required.
+        repo: string; // Required.
+        sha ?: string; // Optional. Optional string - Sha or branch to start listing commits from.
+        path ?: string; // Optional. Optional string - Only commits containing this file path will be returned.
+        page ?: number; // Optional. Page number of the results to fetch. Validation rule: ` ^[0-9]+$ `.
+        per_page ?: number; // Optional. A custom page size up to 100. Default is 30. Validation rule: ` ^[0-9]+$ `.
+        since ?: string; // Optional. Optional string of a timestamp in ISO 8601 format: YYYY-MM-DDTHH:MM:SSZ
+      },
+      callback: (err: any, result: any) => void
+    );
+    getCommit(
+      msg:
+      {
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        user: string; // Required.
+        repo: string; // Required.
+        sha: string; // Required.
+      },
+      callback: (err: any, result: any) => void
+    );
+    getAllCommitComments(
+      msg:
+      {
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        user: string; // Required.
+        repo: string; // Required.
+        page ?: number; // Optional. Page number of the results to fetch. Validation rule: ` ^[0-9]+$ `.
+        per_page ?: number; // Optional. A custom page size up to 100. Default is 30. Validation rule: ` ^[0-9]+$ `.
+      },
+      callback: (err: any, result: any) => void
+    );
+    getCommitComments(
+      msg:
+      {
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        user: string; // Required.
+        repo: string; // Required.
+        sha: string; // Required.
+        page ?: number; // Optional. Page number of the results to fetch. Validation rule: ` ^[0-9]+$ `.
+        per_page ?: number; // Optional. A custom page size up to 100. Default is 30. Validation rule: ` ^[0-9]+$ `.
+      },
+      callback: (err: any, result: any) => void
+    );
+    createCommitComment(
+      msg:
+      {
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        user: string; // Required.
+        repo: string; // Required.
+        sha: string; // Required.
+        body: string; // Required.
+        commit_id: string; // Required. Required string - Sha of the commit to comment on.
+        path ?: string; // Optional. Optional string - Relative path of the file to comment on.
+        position ?: number; // Optional. Optional number - Line index in the diff to comment on.
+        line ?: number; // Optional. Optional number - Line number in the file to comment on. Defaults to 1.
+      },
+      callback: (err: any, result: any) => void
+    );
+    getCommitComment(
+      msg:
+      {
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        user: string; // Required.
+        repo: string; // Required.
+        id: string; // Required.
+      },
+      callback: (err: any, result: any) => void
+    );
+    updateCommitComment(
+      msg:
+      {
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        user: string; // Required.
+        repo: string; // Required.
+        id: string; // Required.
+        body: string; // Required.
+      },
+      callback: (err: any, result: any) => void
+    );
+    compareCommits(
+      msg:
+      {
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        user: string; // Required.
+        repo: string; // Required.
+        base: string; // Required. Required string - The branch (or git ref) you want your changes pulled into. This should be an existing branch on the current repository. You cannot submit a pull request to one repo that requests a merge to a base of another repo.
+        head: string; // Required. Required string - The branch (or git ref) where your changes are implemented.
+      },
+      callback: (err: any, result: any) => void
+    );
+    deleteCommitComment(
+      msg:
+      {
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        user: string; // Required.
+        repo: string; // Required.
+        id: string; // Required.
+      },
+      callback: (err: any, result: any) => void
+    );
+    getReadme(
+      msg:
+      {
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        user: string; // Required.
+        repo: string; // Required.
+        ref ?: string; // Optional. The String name of the Commit/Branch/Tag. Defaults to master.
+      },
+      callback: (err: any, result: any) => void
+    );
+    getContent(
+      msg:
+      {
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        user: string; // Required.
+        repo: string; // Required.
+        path ?: string; // Optional. The content path.
+        ref ?: string; // Optional. The String name of the Commit/Branch/Tag. Defaults to master.
+      },
+      callback: (err: any, result: any) => void
+    );
+    createFile(
+      msg:
+      {
+        user: string; // Required.
+        repo: string; // Required.
+        path: string; // Required. The content path.
+        message: string; // Required. The commit message.
+        content: string; // Required. The new file content, Base64 encoded.
+        branch ?: string; // Optional. The branch name. If not provided, uses the repository’s default branch (usually master).
+        author ?: any; // TODO::JSON // Optional. The author of the commit. An object with name and email properties. The author section is optional and is filled in with the committer information if omitted. If the committer information is omitted, the authenticated user’s information is used.
+        committer ?: any; // TODO::JSON // Optional. The committer of the commit. An object with name and email properties. You must provide values for both name and email, whether you choose to use author or committer. Otherwise, you’ll receive a 500 status code.
+      },
+      callback: (err: any, result: any) => void
+    );
+    updateFile(
+      msg:
+      {
+        user: string; // Required.
+        repo: string; // Required.
+        path: string; // Required. The content path.
+        message: string; // Required. The commit message.
+        content: string; // Required. The updated file content, Base64 encoded.
+        sha: string; // Required. The blob SHA of the file being replaced.
+        branch ?: string; // Optional. The branch name. If not provided, uses the repository’s default branch (usually master).
+        author ?: any; // TODO::JSON // Optional. The author of the commit. An object with name and email properties. The author section is optional and is filled in with the committer information if omitted. If the committer information is omitted, the authenticated user’s information is used.
+        committer ?: any; // TODO::JSON // Optional. The committer of the commit. An object with name and email properties. You must provide values for both name and email, whether you choose to use author or committer. Otherwise, you’ll receive a 500 status code.
+      },
+      callback: (err: any, result: any) => void
+    );
+    deleteFile(
+      msg:
+      {
+        user: string; // Required.
+        repo: string; // Required.
+        path: string; // Required. The content path.
+        message: string; // Required. The commit message.
+        sha: string; // Required. The blob SHA of the file being removed.
+        branch ?: string; // Optional. The branch name. If not provided, uses the repository’s default branch (usually master).
+        author ?: any; // TODO::JSON // Optional. The author of the commit. An object with name and email properties. The author section is optional and is filled in with the committer information if omitted. If the committer information is omitted, the authenticated user’s information is used.
+        committer ?: any; // TODO::JSON // Optional. The committer of the commit. An object with name and email properties. You must provide values for both name and email, whether you choose to use author or committer. Otherwise, you’ll receive a 500 status code.
+      },
+      callback: (err: any, result: any) => void
+    );
+    getArchiveLink(
+      msg:
+      {
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        user: string; // Required.
+        repo: string; // Required.
+        ref: string; // Required. String of the name of the fully qualified reference (ie: heads/master). If it doesn’t have at least one slash, it will be rejected.
+        archive_format: string; // Required. Either tarball or zipball Validation rule: ` ^(tarball|zipball)$ `.
+      },
+      callback: (err: any, result: any) => void
+    );
+    getDownloads(
+      msg:
+      {
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        user: string; // Required.
+        repo: string; // Required.
+        page ?: number; // Optional. Page number of the results to fetch. Validation rule: ` ^[0-9]+$ `.
+        per_page ?: number; // Optional. A custom page size up to 100. Default is 30. Validation rule: ` ^[0-9]+$ `.
+      },
+      callback: (err: any, result: any) => void
+    );
+    getDownload(
+      msg:
+      {
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        user: string; // Required.
+        repo: string; // Required.
+        id: string; // Required.
+      },
+      callback: (err: any, result: any) => void
+    );
+    deleteDownload(
+      msg:
+      {
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        user: string; // Required.
+        repo: string; // Required.
+        id: string; // Required.
+      },
+      callback: (err: any, result: any) => void
+    );
+    getForks(
+      msg:
+      {
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        user: string; // Required.
+        repo: string; // Required.
+        sort ?: string; // Optional. Possible values: `newest`, `oldest`, `watchers`, default: `newest`. Validation rule: ` ^(newest|oldest|watchers)$ `.
+        page ?: number; // Optional. Page number of the results to fetch. Validation rule: ` ^[0-9]+$ `.
+        per_page ?: number; // Optional. A custom page size up to 100. Default is 30. Validation rule: ` ^[0-9]+$ `.
+      },
+      callback: (err: any, result: any) => void
+    );
+    fork(
+      msg:
+      {
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        user: string; // Required.
+        repo: string; // Required.
+        org ?: string; // Optional. Optional String - Organization login. The repository will be forked into this organization.
+      },
+      callback: (err: any, result: any) => void
+    );
+    getKeys(
+      msg:
+      {
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        user: string; // Required.
+        repo: string; // Required.
+        page ?: number; // Optional. Page number of the results to fetch. Validation rule: ` ^[0-9]+$ `.
+        per_page ?: number; // Optional. A custom page size up to 100. Default is 30. Validation rule: ` ^[0-9]+$ `.
+      },
+      callback: (err: any, result: any) => void
+    );
+    getKey(
+      msg:
+      {
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        user: string; // Required.
+        repo: string; // Required.
+        id: string; // Required.
+      },
+      callback: (err: any, result: any) => void
+    );
+    createKey(
+      msg:
+      {
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        user: string; // Required.
+        repo: string; // Required.
+        title: string; // Required.
+        key: string; // Required.
+      },
+      callback: (err: any, result: any) => void
+    );
+    updateKey(
+      msg:
+      {
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        user: string; // Required.
+        repo: string; // Required.
+        id: string; // Required.
+        title: string; // Required.
+        key: string; // Required.
+      },
+      callback: (err: any, result: any) => void
+    );
+    deleteKey(
+      msg:
+      {
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        user: string; // Required.
+        repo: string; // Required.
+        id: string; // Required.
+      },
+      callback: (err: any, result: any) => void
+    );
+    getStargazers(
+      msg:
+      {
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        user: string; // Required.
+        repo: string; // Required.
+        page ?: number; // Optional. Page number of the results to fetch. Validation rule: ` ^[0-9]+$ `.
+        per_page ?: number; // Optional. A custom page size up to 100. Default is 30. Validation rule: ` ^[0-9]+$ `.
+      },
+      callback: (err: any, result: any) => void
+    );
+    getStarred(
+      msg:
+      {
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        page ?: number; // Optional. Page number of the results to fetch. Validation rule: ` ^[0-9]+$ `.
+        per_page ?: number; // Optional. A custom page size up to 100. Default is 30. Validation rule: ` ^[0-9]+$ `.
+      },
+      callback: (err: any, result: any) => void
+    );
+    getStarredFromUser(
+      msg:
+      {
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        user: string; // Required.
+        page ?: number; // Optional. Page number of the results to fetch. Validation rule: ` ^[0-9]+$ `.
+        per_page ?: number; // Optional. A custom page size up to 100. Default is 30. Validation rule: ` ^[0-9]+$ `.
+      },
+      callback: (err: any, result: any) => void
+    );
+    getStarring(
+      msg:
+      {
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        user: string; // Required.
+        repo: string; // Required.
+        page ?: number; // Optional. Page number of the results to fetch. Validation rule: ` ^[0-9]+$ `.
+        per_page ?: number; // Optional. A custom page size up to 100. Default is 30. Validation rule: ` ^[0-9]+$ `.
+      },
+      callback: (err: any, result: any) => void
+    );
+    star(
+      msg:
+      {
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        user: string; // Required.
+        repo: string; // Required.
+      },
+      callback: (err: any, result: any) => void
+    );
+    unStar(
+      msg:
+      {
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        user: string; // Required.
+        repo: string; // Required.
+      },
+      callback: (err: any, result: any) => void
+    );
+    getWatchers(
+      msg:
+      {
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        user: string; // Required.
+        repo: string; // Required.
+        page ?: number; // Optional. Page number of the results to fetch. Validation rule: ` ^[0-9]+$ `.
+        per_page ?: number; // Optional. A custom page size up to 100. Default is 30. Validation rule: ` ^[0-9]+$ `.
+      },
+      callback: (err: any, result: any) => void
+    );
+    getWatched(
+      msg:
+      {
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        page ?: number; // Optional. Page number of the results to fetch. Validation rule: ` ^[0-9]+$ `.
+        per_page ?: number; // Optional. A custom page size up to 100. Default is 30. Validation rule: ` ^[0-9]+$ `.
+      },
+      callback: (err: any, result: any) => void
+    );
+    getWatchedFromUser(
+      msg:
+      {
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        user: string; // Required.
+        page ?: number; // Optional. Page number of the results to fetch. Validation rule: ` ^[0-9]+$ `.
+        per_page ?: number; // Optional. A custom page size up to 100. Default is 30. Validation rule: ` ^[0-9]+$ `.
+      },
+      callback: (err: any, result: any) => void
+    );
+    getWatching(
+      msg:
+      {
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        user: string; // Required.
+        repo: string; // Required.
+        page ?: number; // Optional. Page number of the results to fetch. Validation rule: ` ^[0-9]+$ `.
+        per_page ?: number; // Optional. A custom page size up to 100. Default is 30. Validation rule: ` ^[0-9]+$ `.
+      },
+      callback: (err: any, result: any) => void
+    );
+    watch(
+      msg:
+      {
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        user: string; // Required.
+        repo: string; // Required.
+      },
+      callback: (err: any, result: any) => void
+    );
+    unWatch(
+      msg:
+      {
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        user: string; // Required.
+        repo: string; // Required.
+      },
+      callback: (err: any, result: any) => void
+    );
+    getHooks(
+      msg:
+      {
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        user: string; // Required.
+        repo: string; // Required.
+        page ?: number; // Optional. Page number of the results to fetch. Validation rule: ` ^[0-9]+$ `.
+        per_page ?: number; // Optional. A custom page size up to 100. Default is 30. Validation rule: ` ^[0-9]+$ `.
+      },
+      callback: (err: any, result: any) => void
+    );
+    getHook(
+      msg:
+      {
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        user: string; // Required.
+        repo: string; // Required.
+        id: string; // Required.
+      },
+      callback: (err: any, result: any) => void
+    );
+    createHook(
+      msg:
+      {
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        user: string; // Required.
+        repo: string; // Required.
+        name: string; // Required.
+        config: any; // TODO::JSON // Required. Required hash - A Hash containing key/value pairs to provide settings for this hook. These settings vary between the services and are defined in the github-services repo. Booleans are stored internally as `1` for true, and `0` for false. Any JSON true/false values will be converted automatically.
+        events ?: any[]; // TODO::ARRAY // Optional. Optional array - Determines what events the hook is triggered for. Default: `['push']`.
+        active ?: boolean; // Optional. Optional boolean - Determines whether the hook is actually triggered on pushes.
+      },
+      callback: (err: any, result: any) => void
+    );
+    updateHook(
+      msg:
+      {
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        user: string; // Required.
+        repo: string; // Required.
+        id: string; // Required.
+        name: string; // Required.
+        config: any; // TODO::JSON // Required. Required hash - A Hash containing key/value pairs to provide settings for this hook. Modifying this will replace the entire config object. These settings vary between the services and are defined in the github-services repo. Booleans are stored internally as `1` for true, and `0` for false. Any JSON true/false values will be converted automatically.
+        events ?: any[]; // TODO::ARRAY // Optional. Optional array - Determines what events the hook is triggered for. This replaces the entire array of events. Default: `['push']`.
+        add_events ?: any[]; // TODO::ARRAY // Optional. Optional array - Determines a list of events to be added to the list of events that the Hook triggers for.
+        remove_events ?: any[]; // TODO::ARRAY // Optional. Optional array - Determines a list of events to be removed from the list of events that the Hook triggers for.
+        active ?: boolean; // Optional. Optional boolean - Determines whether the hook is actually triggered on pushes.
+      },
+      callback: (err: any, result: any) => void
+    );
+    testHook(
+      msg:
+      {
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        user: string; // Required.
+        repo: string; // Required.
+        id: string; // Required.
+      },
+      callback: (err: any, result: any) => void
+    );
+    deleteHook(
+      msg:
+      {
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        user: string; // Required.
+        repo: string; // Required.
+        id: string; // Required.
+      },
+      callback: (err: any, result: any) => void
+    );
+  }
   export interface user {
     getFrom(
       msg:
       {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
         user: string; // Required.
       },
       callback: (err: any, result: any) => void
@@ -1261,14 +1956,14 @@ declare module GitHubApi {
     get(
       msg:
       {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
       },
       callback: (err: any, result: any) => void
     );
     update(
       msg:
       {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
         name ?: string; // Optional.
         email ?: string; // Optional.
         blog ?: string; // Optional.
@@ -1282,7 +1977,7 @@ declare module GitHubApi {
     getOrgs(
       msg:
       {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
         page ?: number; // Optional. Page number of the results to fetch. Validation rule: ` ^[0-9]+$ `.
         per_page ?: number; // Optional. A custom page size up to 100. Default is 30. Validation rule: ` ^[0-9]+$ `.
       },
@@ -1291,7 +1986,7 @@ declare module GitHubApi {
     getEmails(
       msg:
       {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
         page ?: number; // Optional. Page number of the results to fetch. Validation rule: ` ^[0-9]+$ `.
         per_page ?: number; // Optional. A custom page size up to 100. Default is 30. Validation rule: ` ^[0-9]+$ `.
       },
@@ -1300,21 +1995,21 @@ declare module GitHubApi {
     addEmails(
       msg:
       {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
       },
       callback: (err: any, result: any) => void
     );
     deleteEmails(
       msg:
       {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
       },
       callback: (err: any, result: any) => void
     );
     getFollowers(
       msg:
       {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
         user: string; // Required.
         page ?: number; // Optional. Page number of the results to fetch. Validation rule: ` ^[0-9]+$ `.
         per_page ?: number; // Optional. A custom page size up to 100. Default is 30. Validation rule: ` ^[0-9]+$ `.
@@ -1324,7 +2019,7 @@ declare module GitHubApi {
     getFollowingFromUser(
       msg:
       {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
         user: string; // Required.
         page ?: number; // Optional. Page number of the results to fetch. Validation rule: ` ^[0-9]+$ `.
         per_page ?: number; // Optional. A custom page size up to 100. Default is 30. Validation rule: ` ^[0-9]+$ `.
@@ -1334,7 +2029,7 @@ declare module GitHubApi {
     getFollowing(
       msg:
       {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
         page ?: number; // Optional. Page number of the results to fetch. Validation rule: ` ^[0-9]+$ `.
         per_page ?: number; // Optional. A custom page size up to 100. Default is 30. Validation rule: ` ^[0-9]+$ `.
       },
@@ -1343,7 +2038,7 @@ declare module GitHubApi {
     getFollowUser(
       msg:
       {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
         user: string; // Required.
         page ?: number; // Optional. Page number of the results to fetch. Validation rule: ` ^[0-9]+$ `.
         per_page ?: number; // Optional. A custom page size up to 100. Default is 30. Validation rule: ` ^[0-9]+$ `.
@@ -1353,7 +2048,7 @@ declare module GitHubApi {
     followUser(
       msg:
       {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
         user: string; // Required.
       },
       callback: (err: any, result: any) => void
@@ -1361,7 +2056,7 @@ declare module GitHubApi {
     unFollowUser(
       msg:
       {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
         user: string; // Required.
       },
       callback: (err: any, result: any) => void
@@ -1369,7 +2064,7 @@ declare module GitHubApi {
     getKeys(
       msg:
       {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
         page ?: number; // Optional. Page number of the results to fetch. Validation rule: ` ^[0-9]+$ `.
         per_page ?: number; // Optional. A custom page size up to 100. Default is 30. Validation rule: ` ^[0-9]+$ `.
       },
@@ -1378,7 +2073,7 @@ declare module GitHubApi {
     getKey(
       msg:
       {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
         id: string; // Required.
       },
       callback: (err: any, result: any) => void
@@ -1386,7 +2081,7 @@ declare module GitHubApi {
     createKey(
       msg:
       {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
         title: string; // Required.
         key: string; // Required.
       },
@@ -1395,7 +2090,7 @@ declare module GitHubApi {
     updateKey(
       msg:
       {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
         id: string; // Required.
         title: string; // Required.
         key: string; // Required.
@@ -1405,708 +2100,7 @@ declare module GitHubApi {
     deleteKey(
       msg:
       {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
-        id: string; // Required.
-      },
-      callback: (err: any, result: any) => void
-    );
-  }
-  export interface repos {
-    getAll(
-      msg :
-      {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
-        type ?: string; // Optional. Possible values: `all`, `owner`, `public`, `private`, `member`. Default: `all`. Validation rule: ` ^(all|owner|public|private|member)$ `.
-        sort ?: string; // Optional. Possible values: `created`, `updated`, `pushed`, `full_name`. Default: `full_name`. Validation rule: ` ^(created|updated|pushed|full_name)$ `.
-        direction ?: string; // Optional. Validation rule: ` ^(asc|desc)$ `.
-        page ?: number; // Optional. Page number of the results to fetch. Validation rule: ` ^[0-9]+$ `.
-        per_page ?: number; // Optional. A custom page size up to 100. Default is 30. Validation rule: ` ^[0-9]+$ `.
-      },
-      callback: (err: any, result: any) => void
-    );
-    getFromUser(
-      msg :
-      {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
-        user: string; // Required.
-        type ?: string; // Optional. Possible values: `all`, `owner`, `member`. Default: `public`. Validation rule: ` ^(all|owner|member)$ `.
-        sort ?: string; // Optional. Possible values: `created`, `updated`, `pushed`, `full_name`. Default: `full_name`. Validation rule: ` ^(created|updated|pushed|full_name)$ `.
-        direction ?: string; // Optional. Validation rule: ` ^(asc|desc)$ `.
-        page ?: number; // Optional. Page number of the results to fetch. Validation rule: ` ^[0-9]+$ `.
-        per_page ?: number; // Optional. A custom page size up to 100. Default is 30. Validation rule: ` ^[0-9]+$ `.
-      },
-      callback: (err: any, result: any) => void
-    );
-    getFromOrg(
-      msg :
-      {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
-        org: string; // Required.
-        type ?: string; // Optional. Possible values: `all`, `public`, `member`. Default: `all`. Validation rule: ` ^(all|public|member)$ `.
-        page ?: number; // Optional. Page number of the results to fetch. Validation rule: ` ^[0-9]+$ `.
-        per_page ?: number; // Optional. A custom page size up to 100. Default is 30. Validation rule: ` ^[0-9]+$ `.
-      },
-      callback: (err: any, result: any) => void
-    );
-    create(
-      msg :
-      {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
-        name: string; // Required.
-        description ?: string; // Optional.
-        homepage ?: string; // Optional.
-        private ?: boolean; // Optional. Optional boolean true: to create a private repository, false to create a public one. Creating private repositories requires a paid GitHub account. Default is false.
-        has_issues ?: boolean; // Optional. Optional boolean true: to enable issues for this repository, false to disable them. Default is true.
-        has_wiki ?: boolean; // Optional. Optional boolean true: to enable the wiki for this repository, false to disable it. Default is true.
-        has_downloads ?: boolean; // Optional. Optional boolean true: to enable downloads for this repository, false to disable them. Default is true.
-        auto_init ?: boolean; // Optional. Optional boolean true: to create an initial commit with empty README. Default is false
-        gitignore_template ?: string; // Optional. Optional string Desired: language or platform .gitignore template to apply. Ignored if auto_init parameter is not provided.
-      },
-      callback: (err: any, result: any) => void
-    );
-    createFromOrg(
-      msg :
-      {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
-        org: string; // Required.
-        name: string; // Required.
-        description ?: string; // Optional.
-        homepage ?: string; // Optional.
-        private ?: boolean; // Optional. Optional boolean true: to create a private repository, false to create a public one. Creating private repositories requires a paid GitHub account. Default is false.
-        has_issues ?: boolean; // Optional. Optional boolean true: to enable issues for this repository, false to disable them. Default is true.
-        has_wiki ?: boolean; // Optional. Optional boolean true: to enable the wiki for this repository, false to disable it. Default is true.
-        has_downloads ?: boolean; // Optional. Optional boolean true: to enable downloads for this repository, false to disable them. Default is true.
-        auto_init ?: boolean; // Optional. Optional boolean true: to create an initial commit with empty README. Default is false
-        gitignore_template ?: string; // Optional. Optional string Desired: language or platform .gitignore template to apply. Ignored if auto_init parameter is not provided.
-        team_id ?: number; // Optional. Optional number The: id of the team that will be granted access to this repository. This is only valid when creating a repo in an organization. Validation rule: ` ^[0-9]+$ `.
-      },
-      callback: (err: any, result: any) => void
-    );
-    get(
-      msg :
-      {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
-        user: string; // Required.
-        repo: string; // Required.
-      },
-      callback: (err: any, result: any) => void
-    );
-    update(
-      msg :
-      {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
-        user: string; // Required.
-        repo: string; // Required.
-        name: string; // Required.
-        description ?: string; // Optional.
-        homepage ?: string; // Optional.
-        private ?: boolean; // Optional. Optional boolean true: to create a private repository, false to create a public one. Creating private repositories requires a paid GitHub account. Default is false.
-        has_issues ?: boolean; // Optional. Optional boolean true: to enable issues for this repository, false to disable them. Default is true.
-        has_wiki ?: boolean; // Optional. Optional boolean true: to enable the wiki for this repository, false to disable it. Default is true.
-        has_downloads ?: boolean; // Optional. Optional boolean true: to enable downloads for this repository, false to disable them. Default is true.
-      },
-      callback: (err: any, result: any) => void
-    );
-    delete(
-      msg :
-      {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
-        user: string; // Required.
-        repo: string; // Required.
-      },
-      callback: (err: any, result: any) => void
-    );
-    merge(
-      msg :
-      {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
-        user: string; // Required.
-        repo: string; // Required.
-        base: string; // Required. Required string The: branch (or git ref) you want your changes pulled into. This should be an existing branch on the current repository. You cannot submit a pull request to one repo that requests a merge to a base of another repo.
-        head: string; // Required. Required string The: branch (or git ref) where your changes are implemented.
-        commit_message ?: string; // Optional. Optional string Commit: message to use for the merge commit. If omitted, a default message will be used.
-      },
-      callback: (err: any, result: any) => void
-    );
-    getContributors(
-      msg :
-      {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
-        user: string; // Required.
-        repo: string; // Required.
-        anon ?: boolean; // Optional. Optional flag. Set to 1 or true to include anonymous contributors in results.
-        page ?: number; // Optional. Page number of the results to fetch. Validation rule: ` ^[0-9]+$ `.
-        per_page ?: number; // Optional. A custom page size up to 100. Default is 30. Validation rule: ` ^[0-9]+$ `.
-      },
-      callback: (err: any, result: any) => void
-    );
-    getLanguages(
-      msg :
-      {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
-        user: string; // Required.
-        repo: string; // Required.
-        page ?: number; // Optional. Page number of the results to fetch. Validation rule: ` ^[0-9]+$ `.
-        per_page ?: number; // Optional. A custom page size up to 100. Default is 30. Validation rule: ` ^[0-9]+$ `.
-      },
-      callback: (err: any, result: any) => void
-    );
-    getTeams(
-      msg :
-      {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
-        user: string; // Required.
-        repo: string; // Required.
-        page ?: number; // Optional. Page number of the results to fetch. Validation rule: ` ^[0-9]+$ `.
-        per_page ?: number; // Optional. A custom page size up to 100. Default is 30. Validation rule: ` ^[0-9]+$ `.
-      },
-      callback: (err: any, result: any) => void
-    );
-    getTags(
-      msg :
-      {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
-        user: string; // Required.
-        repo: string; // Required.
-        page ?: number; // Optional. Page number of the results to fetch. Validation rule: ` ^[0-9]+$ `.
-        per_page ?: number; // Optional. A custom page size up to 100. Default is 30. Validation rule: ` ^[0-9]+$ `.
-      },
-      callback: (err: any, result: any) => void
-    );
-    getBranches(
-      msg :
-      {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
-        user: string; // Required.
-        repo: string; // Required.
-        page ?: number; // Optional. Page number of the results to fetch. Validation rule: ` ^[0-9]+$ `.
-        per_page ?: number; // Optional. A custom page size up to 100. Default is 30. Validation rule: ` ^[0-9]+$ `.
-      },
-      callback: (err: any, result: any) => void
-    );
-    getBranch(
-      msg :
-      {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
-        user: string; // Required.
-        repo: string; // Required.
-        branch: string; // Required.
-        page ?: number; // Optional. Page number of the results to fetch. Validation rule: ` ^[0-9]+$ `.
-        per_page ?: number; // Optional. A custom page size up to 100. Default is 30. Validation rule: ` ^[0-9]+$ `.
-      },
-      callback: (err: any, result: any) => void
-    );
-    getCollaborators(
-      msg :
-      {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
-        user: string; // Required.
-        repo: string; // Required.
-        page ?: number; // Optional. Page number of the results to fetch. Validation rule: ` ^[0-9]+$ `.
-        per_page ?: number; // Optional. A custom page size up to 100. Default is 30. Validation rule: ` ^[0-9]+$ `.
-      },
-      callback: (err: any, result: any) => void
-    );
-    getCollaborator(
-      msg :
-      {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
-        user: string; // Required.
-        repo: string; // Required.
-        collabuser: string; // Required.
-      },
-      callback: (err: any, result: any) => void
-    );
-    addCollaborator(
-      msg :
-      {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
-        user: string; // Required.
-        repo: string; // Required.
-        collabuser: string; // Required.
-      },
-      callback: (err: any, result: any) => void
-    );
-    removeCollaborator(
-      msg :
-      {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
-        user: string; // Required.
-        repo: string; // Required.
-        collabuser: string; // Required.
-      },
-      callback: (err: any, result: any) => void
-    );
-    getCommits(
-      msg :
-      {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
-        user: string; // Required.
-        repo: string; // Required.
-        sha ?: string; // Optional. Optional string Sha: or branch to start listing commits from.
-        path ?: string; // Optional. Optional string Only: commits containing this file path will be returned.
-        page ?: number; // Optional. Page number of the results to fetch. Validation rule: ` ^[0-9]+$ `.
-        per_page ?: number; // Optional. A custom page size up to 100. Default is 30. Validation rule: ` ^[0-9]+$ `.
-        since ?: string; // Optional. Optional string of a timestamp in ISO 8601 format: YYYY-MM-DDTHH:MM:SSZ
-      },
-      callback: (err: any, result: any) => void
-    );
-    getCommit(
-      msg :
-      {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
-        user: string; // Required.
-        repo: string; // Required.
-        sha: string; // Required.
-      },
-      callback: (err: any, result: any) => void
-    );
-    getAllCommitComments(
-      msg :
-      {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
-        user: string; // Required.
-        repo: string; // Required.
-        page ?: number; // Optional. Page number of the results to fetch. Validation rule: ` ^[0-9]+$ `.
-        per_page ?: number; // Optional. A custom page size up to 100. Default is 30. Validation rule: ` ^[0-9]+$ `.
-      },
-      callback: (err: any, result: any) => void
-    );
-    getCommitComments(
-      msg :
-      {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
-        user: string; // Required.
-        repo: string; // Required.
-        sha: string; // Required.
-        page ?: number; // Optional. Page number of the results to fetch. Validation rule: ` ^[0-9]+$ `.
-        per_page ?: number; // Optional. A custom page size up to 100. Default is 30. Validation rule: ` ^[0-9]+$ `.
-      },
-      callback: (err: any, result: any) => void
-    );
-    createCommitComment(
-      msg :
-      {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
-        user: string; // Required.
-        repo: string; // Required.
-        sha: string; // Required.
-        body: string; // Required.
-        commit_id: string; // Required. Required string Sha: of the commit to comment on.
-        path ?: string; // Optional. Optional string Relative: path of the file to comment on.
-        position ?: number; // Optional. Optional number Line: index in the diff to comment on.
-        line ?: number; // Optional. Optional number Line: number in the file to comment on. Defaults to 1.
-      },
-      callback: (err: any, result: any) => void
-    );
-    getCommitComment(
-      msg :
-      {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
-        user: string; // Required.
-        repo: string; // Required.
-        id: string; // Required.
-      },
-      callback: (err: any, result: any) => void
-    );
-    updateCommitComment(
-      msg :
-      {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
-        user: string; // Required.
-        repo: string; // Required.
-        id: string; // Required.
-        body: string; // Required.
-      },
-      callback: (err: any, result: any) => void
-    );
-    compareCommits(
-      msg :
-      {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
-        user: string; // Required.
-        repo: string; // Required.
-        base: string; // Required. Required string The: branch (or git ref) you want your changes pulled into. This should be an existing branch on the current repository. You cannot submit a pull request to one repo that requests a merge to a base of another repo.
-        head: string; // Required. Required string The: branch (or git ref) where your changes are implemented.
-      },
-      callback: (err: any, result: any) => void
-    );
-    deleteCommitComment(
-      msg :
-      {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
-        user: string; // Required.
-        repo: string; // Required.
-        id: string; // Required.
-      },
-      callback: (err: any, result: any) => void
-    );
-    getReadme(
-      msg :
-      {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
-        user: string; // Required.
-        repo: string; // Required.
-        ref ?: string; // Optional. The String name of the Commit/Branch/Tag. Defaults to master.
-      },
-      callback: (err: any, result: any) => void
-    );
-    getContent(
-      msg :
-      {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
-        user: string; // Required.
-        repo: string; // Required.
-        path ?: string; // Optional. The content path.
-        ref ?: string; // Optional. The String name of the Commit/Branch/Tag. Defaults to master.
-      },
-      callback: (err: any, result: any) => void
-    );
-    createFile(
-      msg :
-      {
-        user: string; // Required.
-        repo: string; // Required.
-        path: string; // Required. The content path.
-        message: string; // Required. The commit message.
-        content: string; // Required. The new file content, Base64 encoded.
-        branch ?: string; // Optional. The branch name. If not provided, uses the repository’s default branch (usually master).
-        author ?: {};//TODO::JSON // Optional. The author of the commit. An object with name and email properties. The author section is optional and is filled in with the committer information if omitted. If the committer information is omitted, the authenticated user’s information is used.
-        committer ?: {};//TODO::JSON // Optional. The committer of the commit. An object with name and email properties. You must provide values for both name and email, whether you choose to use author or committer. Otherwise, you’ll receive a 500 status code.
-      },
-      callback: (err: any, result: any) => void
-    );
-    updateFile(
-      msg :
-      {
-        user: string; // Required.
-        repo: string; // Required.
-        path: string; // Required. The content path.
-        message: string; // Required. The commit message.
-        content: string; // Required. The updated file content, Base64 encoded.
-        sha: string; // Required. The blob SHA of the file being replaced.
-        branch ?: string; // Optional. The branch name. If not provided, uses the repository’s default branch (usually master).
-        author ?: {};//TODO::JSON // Optional. The author of the commit. An object with name and email properties. The author section is optional and is filled in with the committer information if omitted. If the committer information is omitted, the authenticated user’s information is used.
-        committer ?: {};//TODO::JSON // Optional. The committer of the commit. An object with name and email properties. You must provide values for both name and email, whether you choose to use author or committer. Otherwise, you’ll receive a 500 status code.
-      },
-      callback: (err: any, result: any) => void
-    );
-    deleteFile(
-      msg :
-      {
-        user: string; // Required.
-        repo: string; // Required.
-        path: string; // Required. The content path.
-        message: string; // Required. The commit message.
-        sha: string; // Required. The blob SHA of the file being removed.
-        branch ?: string; // Optional. The branch name. If not provided, uses the repository’s default branch (usually master).
-        author ?: {};//TODO::JSON // Optional. The author of the commit. An object with name and email properties. The author section is optional and is filled in with the committer information if omitted. If the committer information is omitted, the authenticated user’s information is used.
-        committer ?: {};//TODO::JSON // Optional. The committer of the commit. An object with name and email properties. You must provide values for both name and email, whether you choose to use author or committer. Otherwise, you’ll receive a 500 status code.
-      },
-      callback: (err: any, result: any) => void
-    );
-    getArchiveLink(
-      msg :
-      {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
-        user: string; // Required.
-        repo: string; // Required.
-        ref: string; // Required. String of the name of the fully qualified reference (ie: heads/master). If it doesn’t have at least one slash, it will be rejected.
-        archive_format: string; // Required. Either tarball or zipball Validation rule: ` ^(tarball|zipball)$ `.
-      },
-      callback: (err: any, result: any) => void
-    );
-    getDownloads(
-      msg :
-      {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
-        user: string; // Required.
-        repo: string; // Required.
-        page ?: number; // Optional. Page number of the results to fetch. Validation rule: ` ^[0-9]+$ `.
-        per_page ?: number; // Optional. A custom page size up to 100. Default is 30. Validation rule: ` ^[0-9]+$ `.
-      },
-      callback: (err: any, result: any) => void
-    );
-    getDownload(
-      msg :
-      {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
-        user: string; // Required.
-        repo: string; // Required.
-        id: string; // Required.
-      },
-      callback: (err: any, result: any) => void
-    );
-    deleteDownload(
-      msg :
-      {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
-        user: string; // Required.
-        repo: string; // Required.
-        id: string; // Required.
-      },
-      callback: (err: any, result: any) => void
-    );
-    getForks(
-      msg :
-      {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
-        user: string; // Required.
-        repo: string; // Required.
-        sort ?: string; // Optional. Possible values: `newest`, `oldest`, `watchers`, default: `newest`. Validation rule: ` ^(newest|oldest|watchers)$ `.
-        page ?: number; // Optional. Page number of the results to fetch. Validation rule: ` ^[0-9]+$ `.
-        per_page ?: number; // Optional. A custom page size up to 100. Default is 30. Validation rule: ` ^[0-9]+$ `.
-      },
-      callback: (err: any, result: any) => void
-    );
-    fork(
-      msg :
-      {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
-        user: string; // Required.
-        repo: string; // Required.
-        org ?: string; // Optional. Optional String Organization: login. The repository will be forked into this organization.
-      },
-      callback: (err: any, result: any) => void
-    );
-    getKeys(
-      msg :
-      {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
-        user: string; // Required.
-        repo: string; // Required.
-        page ?: number; // Optional. Page number of the results to fetch. Validation rule: ` ^[0-9]+$ `.
-        per_page ?: number; // Optional. A custom page size up to 100. Default is 30. Validation rule: ` ^[0-9]+$ `.
-      },
-      callback: (err: any, result: any) => void
-    );
-    getKey(
-      msg :
-      {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
-        user: string; // Required.
-        repo: string; // Required.
-        id: string; // Required.
-      },
-      callback: (err: any, result: any) => void
-    );
-    createKey(
-      msg :
-      {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
-        user: string; // Required.
-        repo: string; // Required.
-        title: string; // Required.
-        key: string; // Required.
-      },
-      callback: (err: any, result: any) => void
-    );
-    updateKey(
-      msg :
-      {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
-        user: string; // Required.
-        repo: string; // Required.
-        id: string; // Required.
-        title: string; // Required.
-        key: string; // Required.
-      },
-      callback: (err: any, result: any) => void
-    );
-    deleteKey(
-      msg :
-      {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
-        user: string; // Required.
-        repo: string; // Required.
-        id: string; // Required.
-      },
-      callback: (err: any, result: any) => void
-    );
-    getStargazers(
-      msg :
-      {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
-        user: string; // Required.
-        repo: string; // Required.
-        page ?: number; // Optional. Page number of the results to fetch. Validation rule: ` ^[0-9]+$ `.
-        per_page ?: number; // Optional. A custom page size up to 100. Default is 30. Validation rule: ` ^[0-9]+$ `.
-      },
-      callback: (err: any, result: any) => void
-    );
-    getStarred(
-      msg :
-      {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
-        page ?: number; // Optional. Page number of the results to fetch. Validation rule: ` ^[0-9]+$ `.
-        per_page ?: number; // Optional. A custom page size up to 100. Default is 30. Validation rule: ` ^[0-9]+$ `.
-      },
-      callback: (err: any, result: any) => void
-    );
-    getStarredFromUser(
-      msg :
-      {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
-        user: string; // Required.
-        page ?: number; // Optional. Page number of the results to fetch. Validation rule: ` ^[0-9]+$ `.
-        per_page ?: number; // Optional. A custom page size up to 100. Default is 30. Validation rule: ` ^[0-9]+$ `.
-      },
-      callback: (err: any, result: any) => void
-    );
-    getStarring(
-      msg :
-      {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
-        user: string; // Required.
-        repo: string; // Required.
-        page ?: number; // Optional. Page number of the results to fetch. Validation rule: ` ^[0-9]+$ `.
-        per_page ?: number; // Optional. A custom page size up to 100. Default is 30. Validation rule: ` ^[0-9]+$ `.
-      },
-      callback: (err: any, result: any) => void
-    );
-    star(
-      msg :
-      {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
-        user: string; // Required.
-        repo: string; // Required.
-      },
-      callback: (err: any, result: any) => void
-    );
-    unStar(
-      msg :
-      {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
-        user: string; // Required.
-        repo: string; // Required.
-      },
-      callback: (err: any, result: any) => void
-    );
-    getWatchers(
-      msg :
-      {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
-        user: string; // Required.
-        repo: string; // Required.
-        page ?: number; // Optional. Page number of the results to fetch. Validation rule: ` ^[0-9]+$ `.
-        per_page ?: number; // Optional. A custom page size up to 100. Default is 30. Validation rule: ` ^[0-9]+$ `.
-      },
-      callback: (err: any, result: any) => void
-    );
-    getWatched(
-      msg :
-      {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
-        page ?: number; // Optional. Page number of the results to fetch. Validation rule: ` ^[0-9]+$ `.
-        per_page ?: number; // Optional. A custom page size up to 100. Default is 30. Validation rule: ` ^[0-9]+$ `.
-      },
-      callback: (err: any, result: any) => void
-    );
-    getWatchedFromUser(
-      msg :
-      {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
-        user: string; // Required.
-        page ?: number; // Optional. Page number of the results to fetch. Validation rule: ` ^[0-9]+$ `.
-        per_page ?: number; // Optional. A custom page size up to 100. Default is 30. Validation rule: ` ^[0-9]+$ `.
-      },
-      callback: (err: any, result: any) => void
-    );
-    getWatching(
-      msg :
-      {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
-        user: string; // Required.
-        repo: string; // Required.
-        page ?: number; // Optional. Page number of the results to fetch. Validation rule: ` ^[0-9]+$ `.
-        per_page ?: number; // Optional. A custom page size up to 100. Default is 30. Validation rule: ` ^[0-9]+$ `.
-      },
-      callback: (err: any, result: any) => void
-    );
-    watch(
-      msg :
-      {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
-        user: string; // Required.
-        repo: string; // Required.
-      },
-      callback: (err: any, result: any) => void
-    );
-    unWatch(
-      msg :
-      {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
-        user: string; // Required.
-        repo: string; // Required.
-      },
-      callback: (err: any, result: any) => void
-    );
-    getHooks(
-      msg :
-      {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
-        user: string; // Required.
-        repo: string; // Required.
-        page ?: number; // Optional. Page number of the results to fetch. Validation rule: ` ^[0-9]+$ `.
-        per_page ?: number; // Optional. A custom page size up to 100. Default is 30. Validation rule: ` ^[0-9]+$ `.
-      },
-      callback: (err: any, result: any) => void
-    );
-    getHook(
-      msg :
-      {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
-        user: string; // Required.
-        repo: string; // Required.
-        id: string; // Required.
-      },
-      callback: (err: any, result: any) => void
-    );
-    createHook(
-      msg :
-      {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
-        user: string; // Required.
-        repo: string; // Required.
-        name: string; // Required.
-        config: {};//TODO::JSON // Required. Required hash A: Hash containing key/value pairs to provide settings for this hook. These settings vary between the services and are defined in the github-services repo. Booleans are stored internally as `1` for true, and `0` for false. Any JSON true/false values will be converted automatically.
-        events ?: Object[]; //TODO::ARRAY // Optional. Optional array Determines: what events the hook is triggered for. Default: `['push']`.
-        active ?: boolean; // Optional. Optional boolean Determines: whether the hook is actually triggered on pushes.
-      },
-      callback: (err: any, result: any) => void
-    );
-    updateHook(
-      msg :
-      {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
-        user: string; // Required.
-        repo: string; // Required.
-        id: string; // Required.
-        name: string; // Required.
-        config: {};//TODO::JSON // Required. Required hash A: Hash containing key/value pairs to provide settings for this hook. Modifying this will replace the entire config object. These settings vary between the services and are defined in the github-services repo. Booleans are stored internally as `1` for true, and `0` for false. Any JSON true/false values will be converted automatically.
-        events ?: Object[]; //TODO::ARRAY // Optional. Optional array Determines: what events the hook is triggered for. This replaces the entire array of events. Default: `['push']`.
-        add_events ?: Object[]; //TODO::ARRAY // Optional. Optional array Determines: a list of events to be added to the list of events that the Hook triggers for.
-        remove_events ?: Object[]; //TODO::ARRAY // Optional. Optional array Determines: a list of events to be removed from the list of events that the Hook triggers for.
-        active ?: boolean; // Optional. Optional boolean Determines: whether the hook is actually triggered on pushes.
-      },
-      callback: (err: any, result: any) => void
-    );
-    testHook(
-      msg :
-      {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
-        user: string; // Required.
-        repo: string; // Required.
-        id: string; // Required.
-      },
-      callback: (err: any, result: any) => void
-    );
-    deleteHook(
-      msg :
-      {
-        headers ?: Header; // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
-        user: string; // Required.
-        repo: string; // Required.
+        headers ?: any; // TODO::OBJECT // Optional. Key/ value pair of request headers to pass along with the HTTP request. Valid headers are: 'If-Modified-Since', 'If-None-Match', 'Cookie', 'User-Agent'.
         id: string; // Required.
       },
       callback: (err: any, result: any) => void
