@@ -1,9 +1,10 @@
 /// <reference path="typings/tsd.d.ts" />
 
 var program = require('commander');
+var pkginfo = require('pkginfo')(module);
 
 program
-  .version('0.0.1')
+  .version(module.exports.version || "unknown")
   .option('-c, --config [file]', 'Choose config file with module list [modules.json]', 'modules.json')
   .parse(process.argv);
 
