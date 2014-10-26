@@ -21,5 +21,6 @@
   },
   "homepage": "https://github.com/my-koop/installation",
   "dependencies": {
+    "commander": "^2.5.0"
   }
 }
