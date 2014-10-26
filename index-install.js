@@ -3,7 +3,7 @@ program.option("-n, --noprompt", "Automatically install all repo from the organi
 
 var async = require("async");
 var _ = require("lodash");
-var GitHub = require("github");
+var GitHub = require("./lib/github");
 var path = require("path");
 var git = require("nodegit");
 var Repo = require("nodegit").Repo;
@@ -12,33 +12,13 @@ var prompt = require("prompt");
 
 var cwd = process.cwd();
 
-var github = new GitHub({
-    // required
-    version: "3.0.0",
-    // optional
-    timeout: 5000
-});
+var github = new GitHub();
 
+// Execute install
 async.waterfall([
-    getRepos.bind(null, "my-koop"),
+    github.getReposFromOrg.bind(github, "my-koop"),
     promptSelectRepo
 ], cloneRepos);
-
-function getRepos(org, callback) {
-    github.repos.getFromOrg({
-        org: org
-    }, function (err, repos) {
-        if (err)
-            return callback(err);
-
-        repos = _.filter(repos, function (repo) {
-            // filter out this project
-            return repo.name !== "installation";
-        });
-
-        callback(null, repos);
-    });
-}
 
 function promptSelectRepo(repos, callback) {
     // fallthrough
