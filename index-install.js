@@ -6,6 +6,7 @@ var GitHub = require("github");
 var path = require("path");
 var git = require("nodegit");
 var Repo = require("nodegit").Repo;
+var tsd = require("tsd");
 
 var cwd = process.cwd();
 

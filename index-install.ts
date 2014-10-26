@@ -11,6 +11,7 @@ import GitHub = require("github");
 var path = require("path");
 var git = require("nodegit");
 var Repo = require("nodegit").Repo;
+var tsd = require("tsd");
 
 var cwd = process.cwd();
 
@@ -39,6 +40,7 @@ github.repos.getFromOrg({
     _.forEach(repos, function(repo) {
       Repo.clone(repo.git_url, path.resolve(cwd, repo.name),null, function(err, repo){
         if(err) return console.error(err);
+
       });
     });
 
