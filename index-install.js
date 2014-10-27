@@ -10,7 +10,7 @@ var _ = require("lodash");
 var github = require("./lib/github");
 var path = require("path");
 var git = require("nodegit");
-var Repo = git.Repo;
+var Clone = git.Clone.clone;
 var Remote = git.Remote;
 var tsd = require("tsd");
 var prompt = require("prompt");
@@ -125,32 +125,32 @@ function promptSelectRepo(repos, callback) {
     });
 }
 
-function cloneRepos(repos, callback) {
-    if (_.isEmpty(repos))
+function cloneRepos(gitRepos, callback) {
+    if (_.isEmpty(gitRepos))
         callback(new Error("No repositories to clone"));
 
     // update repoNames
-    var maxLength = _.max(repos, function (repo) {
-        return repo.name.length;
+    var maxLength = _.max(gitRepos, function (gitRepo) {
+        return gitRepo.name.length;
     }).name.length;
 
     var myKoopRepo = [];
-    async.each(repos, function (repo, callback) {
-        var repoPath = path.resolve(cwd, repo.name);
-        var repoUrl = repo.git_url;
-        Repo.clone(repoUrl, repoPath, null, function (err) {
-            // don't break on error
-            if (err) {
-                console.warn(err);
-                return callback(null, null);
-            }
+    async.each(gitRepos, function (gitRepo, callback) {
+        var repoPath = path.resolve(cwd, gitRepo.name);
+        var repoUrl = gitRepo.clone_url;
+        Clone(repoUrl, repoPath, null).then(function (repo) {
             var padding = "";
-            for (var i = repo.name.length; i < maxLength; ++i) {
+            for (var i = gitRepo.name.length; i < maxLength; ++i) {
                 padding += " ";
             }
-            console.log("Repo: ", repo.name, padding, " Successfully cloned at :", repoPath);
+            console.log("gitRepo: ", gitRepo.name, padding, " Successfully cloned at :", repoPath);
 
-            myKoopRepo.push(new MyKoopRepo(repo, repoPath));
+            myKoopRepo.push(new MyKoopRepo(gitRepo, repoPath));
+            callback(null, null);
+        }, function (err) {
+            console.warn(err);
+
+            // keep going on error, simply warn
             callback(null, null);
         });
     }, function (err) {

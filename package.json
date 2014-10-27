@@ -29,7 +29,7 @@
     "github": "^0.1.12",
     "json5": "^0.2.0",
     "lodash": "^2.4.1",
-    "nodegit": "^0.1.4",
+    "nodegit": "git://github.com/nodegit/nodegit",
     "pkginfo": "^0.3.0",
     "prompt": "^0.2.14",
     "tsd": "^0.6.0-beta.3"
