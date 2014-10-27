@@ -27,7 +27,7 @@ export function updateLinks(doneCallback) {
             try {
               var pkg = require(pkgPath);
             } catch(e) {
-              callbackPkg(e, null);
+              callbackPkg(null, null);
             }
             if(/mykoop/i.test(pkg.name)) {
               var dir = path.dirname(pkgPath);
@@ -36,21 +36,21 @@ export function updateLinks(doneCallback) {
                 exec(
                   "tsd-link group -g mykoop",
                   {cwd:dir},
-                  execResult.bind(null, callbackPkg, "")
+                  execResult.bind(null, callbackPkg)
                 );
               }, "Successfully linked " + pkg.name));
               return;
             }
-            callbackPkg(null, null);
           }
+          callbackPkg(null, null);
         });
       }, function (err) {
-        callback(err, repos);
+        callback(null, repos);
       })
     },
     function (repos: Repo[], callback) {
       async.each(repos, function(repo, callbackRepo) {
-        async.each(Object.keys(repo.pkg), function(dependency, callbackDep) {
+        async.each(Object.keys(repo.pkg.dependencies || {}), function(dependency, callbackDep) {
           if (/mykoop/i.test(dependency)) {
             exec(
               "npm link " + dependency,
