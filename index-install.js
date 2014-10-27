@@ -6,7 +6,8 @@ var _ = require("lodash");
 var github = require("./lib/github");
 var path = require("path");
 var git = require("nodegit");
-var Repo = require("nodegit").Repo;
+var Repo = git.Repo;
+var Remote = git.Remote;
 var tsd = require("tsd");
 var prompt = require("prompt");
 
@@ -93,7 +94,8 @@ function cloneRepos(err, repos) {
 
     _.forEach(repos, function (repo) {
         var repoPath = path.resolve(cwd, repo.name);
-        Repo.clone(repo.git_url, repoPath, null, function (err) {
+        var repoUrl = repo.git_url;
+        Repo.clone(repoUrl, repoPath, null, function (err) {
             if (err)
                 return console.error(err);
             var padding = "";
