@@ -2,7 +2,6 @@
 export = module;
 var program = require('commander');
 program
-  .option("-n, --noprompt", "Automatically install all repo from the organization without prompt")
   .parse(process.argv);
 
 var fs = require("fs");
@@ -14,6 +13,13 @@ var cwd = process.cwd();
 
 class Repo {
   constructor(public pkg, public dir){}
+}
+
+function execEndMessage(next, message, error, stdout, stderr) {
+  if (stderr) console.log('stderr: ' + stderr);
+  if (error) console.log('error: ' + error);
+  else console.log(message);
+  next();
 }
 
 function execResult(next, error, stdout, stderr) {
@@ -39,9 +45,13 @@ async.waterfall([
           if(/mykoop/i.test(pkg.name)) {
             var dir = path.dirname(pkgPath);
             repos.push(new Repo(pkg, dir));
-            exec('npm link', {cwd:dir}, execResult.bind(null,function() {
-              exec('tsd-link group -g mykoop', {cwd:dir}, execResult.bind(null,callbackPkg));
-            }));
+            exec('npm link', {cwd:dir}, execEndMessage.bind(null,function() {
+              exec(
+                'tsd-link group -g mykoop',
+                {cwd:dir},
+                execResult.bind(null, callbackPkg, "")
+              );
+            }, "Successfully linked " + pkg.name));
             return;
           }
           callbackPkg(null, null);
@@ -58,7 +68,10 @@ async.waterfall([
           exec(
             'npm link ' + dependency,
             {cwd:repo.dir},
-            execResult.bind(null,callbackDep)
+            execEndMessage.bind(null,
+              callbackDep,
+              "Successfully linked " + repo.pkg.name + " with " + dependency
+            )
           );
           return;
         }
@@ -67,7 +80,7 @@ async.waterfall([
         callbackRepo(null, null);
       });
     }, function () {
-      exec('tsd-link group update', execResult.bind(null,callback));
+      exec('tsd-link group update -g mykoop', execResult.bind(null,callback));
     });
   }
 ], function (err) {

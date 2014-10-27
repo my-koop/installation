@@ -1,5 +1,5 @@
 var program = require('commander');
-program.option("-n, --noprompt", "Automatically install all repo from the organization without prompt").parse(process.argv);
+program.parse(process.argv);
 
 var fs = require("fs");
 var path = require("path");
@@ -15,6 +15,16 @@ var Repo = (function () {
     }
     return Repo;
 })();
+
+function execEndMessage(next, message, error, stdout, stderr) {
+    if (stderr)
+        console.log('stderr: ' + stderr);
+    if (error)
+        console.log('error: ' + error);
+    else
+        console.log(message);
+    next();
+}
 
 function execResult(next, error, stdout, stderr) {
     if (stdout)
@@ -42,9 +52,9 @@ async.waterfall([
                     if (/mykoop/i.test(pkg.name)) {
                         var dir = path.dirname(pkgPath);
                         repos.push(new Repo(pkg, dir));
-                        exec('npm link', { cwd: dir }, execResult.bind(null, function () {
-                            exec('tsd-link group -g mykoop', { cwd: dir }, execResult.bind(null, callbackPkg));
-                        }));
+                        exec('npm link', { cwd: dir }, execEndMessage.bind(null, function () {
+                            exec('tsd-link group -g mykoop', { cwd: dir }, execResult.bind(null, callbackPkg, ""));
+                        }, "Successfully linked " + pkg.name));
                         return;
                     }
                     callbackPkg(null, null);
@@ -59,7 +69,7 @@ async.waterfall([
         async.each(repos, function (repo, callbackRepo) {
             async.each(Object.keys(repo.pkg), function (dependency, callbackDep) {
                 if (/mykoop/i.test(dependency)) {
-                    exec('npm link ' + dependency, { cwd: repo.dir }, execResult.bind(null, callbackDep));
+                    exec('npm link ' + dependency, { cwd: repo.dir }, execEndMessage.bind(null, callbackDep, "Successfully linked " + repo.pkg.name + " with " + dependency));
                     return;
                 }
                 callbackDep(null, null);
@@ -67,7 +77,7 @@ async.waterfall([
                 callbackRepo(null, null);
             });
         }, function () {
-            exec('tsd-link group update', execResult.bind(null, callback));
+            exec('tsd-link group update -g mykoop', execResult.bind(null, callback));
         });
     }
 ], function (err) {
