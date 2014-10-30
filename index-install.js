@@ -1,6 +1,7 @@
 var program = require('commander');
-program.option("-n, --noprompt", "Automatically clone all repo from the organization without prompt").option("-l, --links", "Create npm & tsd symbolic links after install").option("-i, --npmi", "Execute npm install on all repo").option("-a, --all", "Run all without prompts").parse(process.argv);
+program.option("-n, --noprompt", "Automatically clone all repo from the organization without prompt").option("-l, --links", "Create npm & tsd symbolic links after install").option("-i, --npmi", "Execute npm install on all repo").option("-a, --all", "Run all without prompts").option("-e, --exclude <project;...>", "Project name to exclude, semicolon seperated").parse(process.argv);
 
+program.exclude = program.exclude && program.exclude.split(";") || ["installation"];
 program.noprompt = program.all || program.noprompt;
 program.links = program.all || program.links;
 program.npmi = program.all || program.npmi;
@@ -16,6 +17,7 @@ var tsd = require("tsd");
 var prompt = require("prompt");
 var links = require("./lib/links");
 var utils = require("./lib/utils");
+var util = require("util");
 var execEndMessage = utils.execEndMessage;
 var execResult = utils.execResult;
 var exec = require("child_process").exec;
@@ -33,6 +35,7 @@ var MyKoopRepo = (function () {
 // Execute install
 async.waterfall([
     github.getReposFromOrg.bind(github, "my-koop"),
+    filterRepo,
     promptSelectRepo,
     cloneRepos,
     updateLinks,
@@ -63,6 +66,19 @@ function npminstall(repos, callback) {
     });
 }
 
+function filterRepo(repos, callback) {
+    var excludesRegExp = _.map(program.exclude, function (exclude) {
+        return new RegExp(util.format("(\\W%s$)|(^%s\\W)|(^%s$)", exclude, exclude, exclude), "i");
+    });
+
+    repos = repos.filter(function (repo) {
+        return _.all(excludesRegExp, function (reg) {
+            return !reg.exec(repo.name);
+        });
+    });
+
+    callback(null, repos);
+}
 function promptSelectRepo(repos, callback) {
     // fallthrough
     if (_.isEmpty(repos) || program.noprompt)
