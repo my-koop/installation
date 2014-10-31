@@ -22,10 +22,10 @@ class Repo {
   }
 }
 
-export function updateLinks(doneCallback) {
+export function updateLinks(excludeList, doneCallback) {
   async.waterfall([
     fs.readdir.bind(null, cwd),
-    filterMykoopRepo,
+    filterMykoopRepo.bind(null, excludeList),
     checkNeedLink,
     npmLinks,
     tsdLinks,
@@ -37,7 +37,9 @@ export function updateLinks(doneCallback) {
 }
 
 
-function filterMykoopRepo(allRepos, callback) {
+function filterMykoopRepo(excludeList, allRepos, callback) {
+  var excludesRegExp = utils.makeMyKoopNameRegExp(excludeList);
+
   async.concat(allRepos, function (file, callbackPkg) {
     var pkgPath = path.resolve(cwd, file, "package.json");
     var tsdPath = path.resolve(cwd, file, "tsd.json");
@@ -56,7 +58,10 @@ function filterMykoopRepo(allRepos, callback) {
           // continue if tsd failed
           tsd = null;
         }
-        if(/mykoop/i.test(pkg.name)) {
+        if(/mykoop/i.test(pkg.name) && _.all(excludesRegExp, function(regex) {
+          return !regex.test(pkg.name);
+        })
+        ) {
           var dir = path.dirname(pkgPath);
           callbackPkg(null, <any>new Repo(pkg, tsd, dir));
           return;

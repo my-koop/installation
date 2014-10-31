@@ -17,7 +17,6 @@ var tsd = require("tsd");
 var prompt = require("prompt");
 var links = require("./lib/links");
 var utils = require("./lib/utils");
-var util = require("util");
 var execEndMessage = utils.execEndMessage;
 var execResult = utils.execResult;
 var exec = require("child_process").exec;
@@ -50,7 +49,7 @@ function updateLinks(repos, callback) {
     if (!program.links)
         return callback(null, repos);
 
-    links.updateLinks(function (err) {
+    links.updateLinks(program.exclude, function (err) {
         callback(err, repos);
     });
 }
@@ -67,9 +66,7 @@ function npminstall(repos, callback) {
 }
 
 function filterRepo(repos, callback) {
-    var excludesRegExp = _.map(program.exclude, function (exclude) {
-        return new RegExp(util.format("(\\W%s$)|(^%s\\W)|(^%s$)", exclude, exclude, exclude), "i");
-    });
+    var excludesRegExp = utils.makeMyKoopNameRegExp(program.exclude);
 
     repos = repos.filter(function (repo) {
         return _.all(excludesRegExp, function (reg) {

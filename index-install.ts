@@ -25,7 +25,6 @@ var tsd = require("tsd");
 var prompt = require("prompt");
 import links = require("./lib/links");
 import utils = require("./lib/utils");
-import util = require("util");
 var execEndMessage = utils.execEndMessage;
 var execResult = utils.execResult;
 var exec = require("child_process").exec;
@@ -52,7 +51,7 @@ async.waterfall([
 function updateLinks (repos: MyKoopRepo[], callback) {
   if(!program.links) return callback(null, repos);
 
-  links.updateLinks( function(err) {
+  links.updateLinks(program.exclude, function(err) {
     callback(err, repos);
   });
 }
@@ -72,10 +71,7 @@ function npminstall(repos: MyKoopRepo[], callback) {
 }
 
 function filterRepo (repos: GitHubResult.Org.Repo[], callback) {
-  var excludesRegExp = _.map(program.exclude, function (exclude) {
-    return new RegExp(util.format("(\\W%s$)|(^%s\\W)|(^%s$)",
-        exclude,exclude,exclude), "i");
-  });
+  var excludesRegExp = utils.makeMyKoopNameRegExp(program.exclude);
 
   repos = repos.filter(function(repo) {
     return _.all(excludesRegExp, function(reg) {
