@@ -1,5 +1,6 @@
 var exec = require("child_process").exec;
 import utils = require("./utils");
+import async = require("async");
 
 export interface Repo {
   path: string;
