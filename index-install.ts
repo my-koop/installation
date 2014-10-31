@@ -25,6 +25,7 @@ var tsd = require("tsd");
 var prompt = require("prompt");
 import links = require("./lib/links");
 import utils = require("./lib/utils");
+import npmi = require("./lib/npmi");
 var execEndMessage = utils.execEndMessage;
 var execResult = utils.execResult;
 var exec = require("child_process").exec;
@@ -58,15 +59,14 @@ function updateLinks (repos: MyKoopRepo[], callback) {
 
 function npminstall(repos: MyKoopRepo[], callback) {
   if(!program.npmi) return callback(null, repos);
-
-  async.each(repos, function (repo, callbackNpmi) {
-    exec(
-      'npm install',
-      {cwd: repo.path},
-      execEndMessage.bind(null, callbackNpmi, "Successfully npm install " + repo.githubRepo.name)
-    );
-  }, function (err) {
-    callback(err, repos);
+  npmi.npminstall(_.map(repos, function(repo) {
+    return {
+      path: repo.path,
+      name: repo.githubRepo.name
+    };
+  })
+  , function(err) {
+    callback(null, repos);
   });
 }
 
