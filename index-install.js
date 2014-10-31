@@ -1,7 +1,7 @@
 var program = require('commander');
 program.option("-n, --noprompt", "Automatically clone all repo from the organization without prompt").option("-l, --links", "Create npm & tsd symbolic links after install").option("-i, --npmi", "Execute npm install on all repo").option("-a, --all", "Run all without prompts").option("-e, --exclude <project;...>", "Project name to exclude, semicolon seperated").parse(process.argv);
 
-program.exclude = program.exclude && program.exclude.split(";") || ["installation"];
+program.exclude = ["installation"].concat(program.exclude && program.exclude.split(";") || []);
 program.noprompt = program.all || program.noprompt;
 program.links = program.all || program.links;
 program.npmi = program.all || program.npmi;

@@ -9,7 +9,7 @@ program
   .option("-e, --exclude <project;...>", "Project name to exclude, semicolon seperated")
   .parse(process.argv);
 
-program.exclude = program.exclude && program.exclude.split(";") || ["installation"];
+program.exclude = ["installation"].concat(program.exclude && program.exclude.split(";") || []);
 program.noprompt = program.all || program.noprompt;
 program.links = program.all || program.links;
 program.npmi = program.all || program.npmi;
