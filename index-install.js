@@ -1,5 +1,5 @@
 var program = require('commander');
-program.option("-n, --noprompt", "Automatically clone all repo from the organization without prompt").option("-l, --links", "Create npm & tsd symbolic links after install").option("-i, --npmi", "Execute npm install on all repo").option("-a, --all", "Run all without prompts").option("-e, --exclude <project;...>", "Project name to exclude, semicolon seperated").parse(process.argv);
+program.option("-n, --noprompt", "Automatically clone all repositories without prompting").option("-l, --links", "Create npm & tsd symbolic links after installation").option("-i, --npmi", "Execute npm install on all repositories").option("-a, --all", "Run with all options [-n,-l,-i]").option("-e, --exclude <project;...>", "Project name to exclude, semicolon seperated").parse(process.argv);
 
 program.exclude = ["installation"].concat(program.exclude && program.exclude.split(";") || []);
 program.noprompt = program.all || program.noprompt;
@@ -112,8 +112,8 @@ function promptSelectRepo(repos, callback) {
             properties: {
                 install: {
                     pattern: /^y[es]*|n[o]?$/i,
-                    description: "Do you want to install?(y/n)",
-                    message: "Must respond yes or no",
+                    description: "Do you want to install? (y/n)",
+                    message: "You must answer with yes or no",
                     default: "yes",
                     required: true
                 }

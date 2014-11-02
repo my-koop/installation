@@ -11,7 +11,7 @@ export function npminstall(repos: Repo[], callback) {
     exec(
       'npm install',
       {cwd: repo.path},
-      utils.execEndMessage.bind(null, callbackNpmi, "Successfully npm install " + repo.name)
+      utils.execEndMessage.bind(null, callbackNpmi, "Successfully \"npm install\"'d " + repo.name)
     );
   }, function (err) {
     callback(err, repos);
