@@ -1,15 +1,11 @@
 
-var git = require("nodegit");
-var Clone = git.Clone.clone;
+var exec = require("child_process").exec;
+import path = require("path");
 
 export function clone(
   url: string,
   destination: string,
   callback: (err) => void
 ) {
-  Clone(url, destination, null).then(function (repo) {
-    callback(null);
-  }, function(err) {
-    callback(err);
-  });
+  exec("git clone " + url, {cwd:path.dirname(destination)}, callback);
 }
