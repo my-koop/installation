@@ -14,6 +14,7 @@ program.exclude = ["installation"].concat(program.exclude && program.exclude.spl
 program.noprompt = program.all || program.noprompt;
 program.links = program.all || program.links;
 program.npmi = program.all || program.npmi;
+program.default = program.all || program.default;
 
 import async = require("async");
 import _ = require("lodash");
@@ -161,13 +162,22 @@ function cloneRepos (gitRepos: GitHubResult.Org.Repo[], callback) {
       if(!err) {
         // folder already exists
         if(program.default) {
+          var branch = gitRepo.default_branch;
           // try to checkout default branch
-          git.Repository.open(repoPath, function(err, r){
+          exec("git fetch", {cwd: repoPath}, function(err) {
             if(!err) {
-              git.Checkout.head(r,{});
+
+              exec(
+                "git checkout -B " + branch + " origin/" + branch,
+                {cwd: repoPath},
+                execEndMessage.bind(
+                  null,
+                  callback,
+                  "Branch [" + branch + "] checked out for repository " + gitRepo.name
+                )
+              );
             }
           });
-          //gitRepo.default_branch;
         } else {
           console.log("Repository %s already exists", repoPath);
         }

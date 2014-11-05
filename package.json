@@ -1,6 +1,6 @@
 {
   "name": "mykoop-installation",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "Utility to help you install MyKoop on your system for dev",
   "main": "index.js",
   "scripts": {
