@@ -21,9 +21,7 @@ import _ = require("lodash");
 import github = require("./lib/github");
 import fs = require("fs");
 import path = require("path");
-var git = require("nodegit");
-var Clone = git.Clone.clone;
-var Remote = git.Remote;
+import git = require("./lib/git");
 var tsd = require("tsd");
 var prompt = require("prompt");
 import links = require("./lib/links");
@@ -182,16 +180,14 @@ function cloneRepos (gitRepos: GitHubResult.Org.Repo[], callback) {
           console.log("Repository %s already exists", repoPath);
         }
       } else {
-        Clone(repoUrl, repoPath, null).then(function (repo) {
+        git.clone(repoUrl, repoPath, function (err) {
+          if(err) {
+            return console.warn(err);
+          }
           var padding = "";
           for(var i=gitRepo.name.length; i<maxLength; ++i){padding+=" ";}
           console.log("gitRepo: ", gitRepo.name,padding, " Successfully cloned at :", repoPath);
-
           myKoopRepo.push(new MyKoopRepo(gitRepo, repoPath));
-          callback(null, null);
-        }, function (err) {
-          console.warn(err);
-          // keep going on error, simply warn
           callback(null, null);
         });
       }
