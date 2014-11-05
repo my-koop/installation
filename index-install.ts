@@ -6,6 +6,7 @@ program
   .option("-l, --links", "Create npm & tsd symbolic links after installation")
   .option("-i, --npmi", "Execute npm install on all repositories")
   .option("-a, --all", "Run with all options [-n,-l,-i]")
+  .option("-d, --default", "Checkout default branch if the repository is already cloned")
   .option("-e, --exclude <project;...>", "Project name to exclude, semicolon seperated")
   .parse(process.argv);
 
@@ -17,7 +18,8 @@ program.npmi = program.all || program.npmi;
 import async = require("async");
 import _ = require("lodash");
 import github = require("./lib/github");
-var path = require("path");
+import fs = require("fs");
+import path = require("path");
 var git = require("nodegit");
 var Clone = git.Clone.clone;
 var Remote = git.Remote;
@@ -155,17 +157,34 @@ function cloneRepos (gitRepos: GitHubResult.Org.Repo[], callback) {
   async.each(gitRepos, function(gitRepo, callback) {
     var repoPath = path.resolve(cwd, gitRepo.name);
     var repoUrl = gitRepo.clone_url;
-    Clone(repoUrl, repoPath, null).then(function (repo) {
-      var padding = "";
-      for(var i=gitRepo.name.length; i<maxLength; ++i){padding+=" ";}
-      console.log("gitRepo: ", gitRepo.name,padding, " Successfully cloned at :", repoPath);
+    fs.stat(repoPath, function(err) {
+      if(!err) {
+        // folder already exists
+        if(program.default) {
+          // try to checkout default branch
+          git.Repository.open(repoPath, function(err, r){
+            if(!err) {
+              git.Checkout.head(r,{});
+            }
+          });
+          //gitRepo.default_branch;
+        } else {
+          console.log("Repository %s already exists", repoPath);
+        }
+      } else {
+        Clone(repoUrl, repoPath, null).then(function (repo) {
+          var padding = "";
+          for(var i=gitRepo.name.length; i<maxLength; ++i){padding+=" ";}
+          console.log("gitRepo: ", gitRepo.name,padding, " Successfully cloned at :", repoPath);
 
-      myKoopRepo.push(new MyKoopRepo(gitRepo, repoPath));
-      callback(null, null);
-    }, function (err) {
-      console.warn(err);
-      // keep going on error, simply warn
-      callback(null, null);
+          myKoopRepo.push(new MyKoopRepo(gitRepo, repoPath));
+          callback(null, null);
+        }, function (err) {
+          console.warn(err);
+          // keep going on error, simply warn
+          callback(null, null);
+        });
+      }
     });
   }, function(err) {
     callback(err, myKoopRepo);
