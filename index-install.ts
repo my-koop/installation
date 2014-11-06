@@ -5,7 +5,7 @@ program
   .option("-n, --noprompt", "Automatically clone all repositories without prompting")
   .option("-l, --links", "Create npm & tsd symbolic links after installation")
   .option("-i, --npmi", "Execute npm install on all repositories")
-  .option("-a, --all", "Run with all options [-n,-l,-i]")
+  .option("-a, --all", "Run with all options [-n,-l,-i,-d]")
   .option("-d, --default", "Checkout default branch if the repository is already cloned")
   .option("-e, --exclude <project;...>", "Project name to exclude, semicolon seperated")
   .parse(process.argv);
