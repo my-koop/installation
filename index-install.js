@@ -1,18 +1,18 @@
 var program = require('commander');
-program.option("-n, --noprompt", "Automatically clone all repositories without prompting").option("-l, --links", "Create npm & tsd symbolic links after installation").option("-i, --npmi", "Execute npm install on all repositories").option("-a, --all", "Run with all options [-n,-l,-i]").option("-e, --exclude <project;...>", "Project name to exclude, semicolon seperated").parse(process.argv);
+program.option("-n, --noprompt", "Automatically clone all repositories without prompting").option("-l, --links", "Create npm & tsd symbolic links after installation").option("-i, --npmi", "Execute npm install on all repositories").option("-a, --all", "Run with all options [-n,-l,-i,-d]").option("-d, --default", "Checkout default branch if the repository is already cloned").option("-e, --exclude <project;...>", "Project name to exclude, semicolon seperated").parse(process.argv);
 
 program.exclude = ["installation"].concat(program.exclude && program.exclude.split(";") || []);
 program.noprompt = program.all || program.noprompt;
 program.links = program.all || program.links;
 program.npmi = program.all || program.npmi;
+program.default = program.all || program.default;
 
 var async = require("async");
 var _ = require("lodash");
 var github = require("./lib/github");
+var fs = require("fs");
 var path = require("path");
-var git = require("nodegit");
-var Clone = git.Clone.clone;
-var Remote = git.Remote;
+var git = require("./lib/git");
 var tsd = require("tsd");
 var prompt = require("prompt");
 var links = require("./lib/links");
@@ -154,20 +154,35 @@ function cloneRepos(gitRepos, callback) {
     async.each(gitRepos, function (gitRepo, callback) {
         var repoPath = path.resolve(cwd, gitRepo.name);
         var repoUrl = gitRepo.clone_url;
-        Clone(repoUrl, repoPath, null).then(function (repo) {
-            var padding = "";
-            for (var i = gitRepo.name.length; i < maxLength; ++i) {
-                padding += " ";
+        fs.stat(repoPath, function (err) {
+            if (!err) {
+                // folder already exists
+                if (program.default) {
+                    var branch = gitRepo.default_branch;
+
+                    // try to checkout default branch
+                    exec("git fetch", { cwd: repoPath }, function (err) {
+                        if (!err) {
+                            exec("git checkout -B " + branch + " origin/" + branch, { cwd: repoPath }, execEndMessage.bind(null, callback, "Branch [" + branch + "] checked out for repository " + gitRepo.name));
+                        }
+                    });
+                } else {
+                    console.log("Repository %s already exists", repoPath);
+                }
+            } else {
+                git.clone(repoUrl, repoPath, function (err) {
+                    if (err) {
+                        return console.warn(err);
+                    }
+                    var padding = "";
+                    for (var i = gitRepo.name.length; i < maxLength; ++i) {
+                        padding += " ";
+                    }
+                    console.log("gitRepo: ", gitRepo.name, padding, " Successfully cloned at :", repoPath);
+                    myKoopRepo.push(new MyKoopRepo(gitRepo, repoPath));
+                    callback(null, null);
+                });
             }
-            console.log("gitRepo: ", gitRepo.name, padding, " Successfully cloned at :", repoPath);
-
-            myKoopRepo.push(new MyKoopRepo(gitRepo, repoPath));
-            callback(null, null);
-        }, function (err) {
-            console.warn(err);
-
-            // keep going on error, simply warn
-            callback(null, null);
         });
     }, function (err) {
         callback(err, myKoopRepo);
